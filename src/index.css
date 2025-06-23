@@ -3,3 +3,38 @@
 * {
   font-family: "General Sans", sans-serif;
 }
+
+:root {
+  --bg: #008080;
+  --text: #000000;
+  --primary: #FFD700;
+  --secondary: #e6fffa;
+}
+
+body.theme-tealgold {
+  --bg: #fff;
+  --text: #000000;
+  --primary: #FFD700;
+  --secondary: #008080;
+}
+
+body.theme-dracula {
+  --bg: #282a36;
+  --text: #f8f8f2;
+  --primary: #bd93f9;
+  --secondary: #44475a;
+}
+
+body.theme-modern {
+  --bg: #e0f2ff;
+  --text: #0f172a;
+  --primary: #2563eb;
+  --secondary: #f1f5f9;
+}
+
+body.theme-blossom {
+  --bg: #fff0f5;
+  --text: #4b0c28;
+  --primary: #ff69b4;
+  --secondary: #ffe4e1;
+}

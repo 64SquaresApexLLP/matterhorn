@@ -9,7 +9,7 @@ const TopNav = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 70 }}
-      className="h-[10vh] bg-gradient-to-r from-teal-900 via-teal-700 to-teal-900 text-white flex items-center justify-between px-6 shadow-md"
+      className="h-[10vh] bg-[var(--secondary)] text-[var(--text)] flex items-center justify-between px-6 shadow-md"
     >
       {/* Logo & Title */}
       <NavLink to="/" className="flex items-center">
@@ -26,7 +26,7 @@ const TopNav = () => {
           placeholder="Search..."
           className="w-full px-4 py-1 outline-none text-sm"
         />
-        <div className="cursor-pointer bg-teal-600 px-3 py-2 text-white">
+        <div className="cursor-pointer bg-[var(--primary)] px-3 py-2 text-white">
           <FaSearch size={14} />
         </div>
       </div>
@@ -35,7 +35,7 @@ const TopNav = () => {
       <div className="flex items-center space-x-4 text-sm">
         <NavLink
           to="/edit-profile"
-          className="flex items-center hover:text-teal-200 transition"
+          className="flex items-center hover:text-[var(--primary)] transition"
         >
           <FaUserEdit className="mr-1" />
           <span className="hidden sm:inline">Edit Profile</span>
@@ -43,7 +43,7 @@ const TopNav = () => {
 
         <NavLink
           to="/settings"
-          className="flex items-center hover:text-teal-200 transition"
+          className="flex items-center hover:text-[var(--primary)] transition"
         >
           <FaCog className="mr-1" />
           <span className="hidden sm:inline">Settings</span>

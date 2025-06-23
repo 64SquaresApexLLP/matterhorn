@@ -13,8 +13,7 @@ const Layout = ({ children }) => {
         <div className="h-full">
           <LeftNav />
         </div>
-
-        <div className="flex-1 overflow-auto bg-white p-4">{children}</div>
+        <div className="flex-1 overflow-auto">{children}</div>
       </div>
     </div>
   );
