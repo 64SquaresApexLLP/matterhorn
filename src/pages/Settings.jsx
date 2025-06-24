@@ -4,22 +4,46 @@ const themes = [
   {
     id: "tealgold",
     name: "Teal Gold (Default)",
-    colors: ["#008080", "#FFD700", "#000000"],
+    colors: ["bg-teal-600", "bg-amber-400", "bg-gray-100"],
+    vars: {
+      bg: "white",
+      text: "gray-100",
+      primary: "amber-400",
+      secondary: "teal-600",
+    },
   },
   {
     id: "dracula",
     name: "Dracula",
-    colors: ["#282a36", "#bd93f9", "#f8f8f2"],
+    colors: ["bg-gray-900", "bg-purple-400", "bg-gray-100"],
+    vars: {
+      bg: "gray-900",
+      text: "gray-100",
+      primary: "purple-400",
+      secondary: "gray-700",
+    },
   },
   {
     id: "modern",
     name: "Modern (Blue)",
-    colors: ["#e0f2ff", "#2563eb", "#0f172a"],
+    colors: ["bg-blue-100", "bg-blue-600", "bg-slate-900"],
+    vars: {
+      bg: "blue-100",
+      text: "slate-900",
+      primary: "blue-600",
+      secondary: "slate-100",
+    },
   },
   {
     id: "blossom",
     name: "Blossom",
-    colors: ["#fff0f5", "#ff69b4", "#4b0c28"],
+    colors: ["bg-pink-100", "bg-pink-500", "bg-pink-900"],
+    vars: {
+      bg: "pink-100",
+      text: "pink-900",
+      primary: "pink-500",
+      secondary: "pink-200",
+    },
   },
 ];
 
@@ -27,8 +51,9 @@ const Settings = () => {
   const [activeTheme, setActiveTheme] = useState("");
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "tealgold"; // default to tealgold
-    setActiveTheme(saved);
+    // const saved = setActiveTheme("tealgold");
+    const saved = localStorage.getItem("theme") || setActiveTheme(saved);; // default to tealgold
+    // setActiveTheme(saved);
     document.body.className = `theme-${saved}`;
   }, []);
 
@@ -39,7 +64,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen p-10 bg-[var(--bg)] text-[var(--text)] transition-colors">
+    <div className="min-h-screen p-10 bg-[var(--secondary-600)]/20 transition-colors">
       <h1 className="text-3xl font-bold mb-8">Choose a Theme</h1>
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
         {themes.map((theme) => (
@@ -57,9 +82,8 @@ const Settings = () => {
               {theme.colors.map((color, idx) => (
                 <span
                   key={idx}
-                  className="w-8 h-8 rounded-full border"
-                  style={{ backgroundColor: color }}
-                ></span>
+                  className={`w-8 h-8 rounded-full border ${color}`}
+                />
               ))}
             </div>
           </div>

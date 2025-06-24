@@ -5,36 +5,62 @@
 }
 
 :root {
-  --bg: #008080;
-  --text: #000000;
-  --primary: #FFD700;
-  --secondary: #e6fffa;
+  --bg: theme(colors.white);
+  --text: theme(colors.gray.100);
+  --primary: theme(colors.amber.400);
+  --secondary: theme(colors.teal.600);
 }
 
 body.theme-tealgold {
-  --bg: #fff;
-  --text: #000000;
-  --primary: #FFD700;
-  --secondary: #008080;
+  --bg: theme(colors.white);
+  --text: theme(colors.gray.100);
+  --primary: theme(colors.amber.400);
+  --secondary: theme(colors.teal.600);
 }
 
 body.theme-dracula {
-  --bg: #282a36;
-  --text: #f8f8f2;
-  --primary: #bd93f9;
-  --secondary: #44475a;
+  --bg: theme(colors.gray.900);
+  --text: theme(colors.gray.100);
+  --primary: theme(colors.purple.400);
+  --secondary: theme(colors.gray.700);
 }
 
 body.theme-modern {
-  --bg: #e0f2ff;
-  --text: #0f172a;
-  --primary: #2563eb;
-  --secondary: #f1f5f9;
+  --bg: theme(colors.blue.100);
+  --text: theme(colors.gray.100);
+  --primary: theme(colors.blue.600);
+  --secondary: theme(colors.slate.100);
 }
 
 body.theme-blossom {
-  --bg: #fff0f5;
-  --text: #4b0c28;
-  --primary: #ff69b4;
-  --secondary: #ffe4e1;
+  --bg: theme(colors.black);
+  --text: theme(colors.gray.100);
+  --primary: theme(colors.gray.100);
+  --secondary: theme(colors.zinc.900);
+}
+
+:root {
+  --secondary-900: #004d4d;
+  --secondary-600: #008080;
+}
+
+/* Theme overrides */
+body.theme-tealgold {
+  --secondary-900: #004d4d;
+  --secondary-600: #008080;
+}
+
+body.theme-dracula {
+  --secondary-900: #2e2e3a;
+  --secondary-600: #4b4b5e;
+}
+
+body.theme-modern {
+  --secondary-900: #003472;
+  --secondary-600: #21497d;
+}
+
+body.theme-blossom {
+  --secondary-900: #000;
+  --secondary-600: #222;
 }

@@ -46,7 +46,7 @@ export default function Nav() {
   return (
     <motion.div
       animate={{ width: isOpen ? 200 : 80 }}
-      className="bg-[var(--secondary)] text-[var(--text)] shadow-lg overflow-visible flex flex-col justify-between sticky bottom-0 transition-all"
+      className="bg-gradient-to-b from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] shadow-lg overflow-visible flex flex-col justify-between sticky bottom-0 transition-all"
       style={{ height: "90vh" }}
       transition={{ duration: 0.4, type: "spring", damping: 15 }}
     >
@@ -55,7 +55,7 @@ export default function Nav() {
         <motion.button
           onClick={toggleSidebar}
           whileTap={{ scale: 0.9 }}
-          className="cursor-pointer absolute top-4 -right-4 z-10 w-8 h-8 bg-[var(--primary)] hover:brightness-110 text-white rounded-full flex items-center justify-center shadow-md"
+          className="cursor-pointer absolute top-4 -right-4 z-10 w-8 h-8 bg-[var(--primary)] hover:brightness-110 text-[var(--secondary)] rounded-full flex items-center justify-center shadow-md"
         >
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </motion.button>
@@ -126,9 +126,7 @@ export default function Nav() {
                       transition={{ duration: 0.2 }}
                     >
                       <p className="text-sm font-semibold">Flori</p>
-                      <p className="text-xs text-[var(--primary)]/80">
-                        Project Manager
-                      </p>
+                      <p className="text-xs font-medium">Project Manager</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -143,9 +141,9 @@ export default function Nav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className={`cursor-pointer w-full mt-3 flex items-center ${
+              className={`cursor-pointer w-full mt-4 flex items-center ${
                 isOpen ? "justify-start gap-3 px-2" : "justify-center"
-              } py-2 text-left hover:bg-red-600 rounded-lg transition-colors text-red-400 hover:text-white`}
+              } py-2 text-left bg-red-600 hover:bg-red-700 rounded-lg transition-colors text-white`}
               onClick={() => {
                 console.log("Logout clicked");
               }}
