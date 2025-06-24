@@ -105,74 +105,14 @@ const LegalDashboard = () => {
       `}</style>
 
       <div className="flex min-h-screen">
-        {/* Sidebar */}
-        <div className="w-64 sidebar rounded-2xl p-6 mr-6">
-          <div className="text-white mb-8">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">⚖️</span>
-              </div>
-              <span className="text-xl font-bold">LawFirm Pro</span>
-            </div>
-          </div>
-
-          <nav className="space-y-2 mb-8">
-            {[
-              { icon: '📊', label: 'Dashboard', active: true },
-              { icon: '💳', label: 'Payments' },
-              { icon: '👥', label: 'Clients' },
-              { icon: '🏛️', label: 'Court Cases' },
-              { icon: '📄', label: 'Documents' },
-              { icon: '📧', label: 'Invoices' },
-              { icon: '👤', label: 'Lawyers' }
-            ].map((item, i) => (
-              <div key={i} className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer transition-all ${
-                item.active ? 'bg-white/20 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'
-              }`}>
-                <span className="text-lg">{item.icon}</span>
-                <span className="font-medium">{item.label}</span>
-              </div>
-            ))}
-          </nav>
-
-          <button className="w-full bg-white/20 hover:bg-white/30 text-white py-3 px-4 rounded-lg font-medium transition-all mb-4">
-            New Case
-          </button>
-
-          <button className="w-full bg-white/10 hover:bg-white/20 text-white/80 py-2 px-4 rounded-lg text-sm transition-all">
-            Firm Settings
-          </button>
-
-          <div className="mt-8 purple-gradient p-4 rounded-xl text-white">
-            <h4 className="font-bold mb-2">Legal Updates</h4>
-            <p className="text-sm text-white/90 mb-3">Stay updated with latest legal precedents</p>
-            <button className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg text-xs font-medium transition-all">
-              Get Pro Plan
-            </button>
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="flex-1">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Header */}
             <div className={`flex justify-between items-center ${animationTrigger ? 'animate-fade-in' : ''}`}>
               <div>
-                <h1 className="text-3xl font-bold text-slate-800">Legal Practice</h1>
+                <h1 className="text-2xl font-semibold text-slate-800">Legal Practice</h1>
                 <p className="text-slate-600">Financial overview and case management</p>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    placeholder="Search..." 
-                    className="pl-10 pr-4 py-2 bg-white/60 backdrop-blur-sm rounded-lg border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                  <span className="absolute left-3 top-2.5 text-slate-400">🔍</span>
-                </div>
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold cursor-pointer">
-                  JM
-                </div>
               </div>
             </div>
 
@@ -190,11 +130,11 @@ const LegalDashboard = () => {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-slate-600">Total Cases</span>
-                        <span className="font-semibold">$2,345,000</span>
+                        <span className="font-semibold">2,345</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-600">Pending Fees</span>
-                        <span className="font-semibold">$125,000</span>
+                        <span className="text-md">$125,000</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-600">Next Payment</span>
