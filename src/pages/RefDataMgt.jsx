@@ -5,7 +5,7 @@ const RefDataMgt = () => {
   const [activity, setActivity] = useState("A-101 Plan");
 
   return (
-    <div className="min-h-screen bg-[#e9f1fd] flex flex-col items-center justify-start py-10 px-4">
+    <div className="bg-[#e9f1fd] flex flex-col items-center justify-start py-10 px-4">
       {/* Title */}
       <h1 className="text-2xl font-bold text-gray-900 mb-10">
         Reference Data Management
