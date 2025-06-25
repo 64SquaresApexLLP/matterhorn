@@ -5,40 +5,44 @@ const RefDataMgt = () => {
   const [activity, setActivity] = useState("A-101 Plan");
 
   return (
-    <div className="h-[80vh] bg-blue-50 flex items-center justify-center px-4">
-      <div className="bg-white shadow-md rounded-2xl p-8 max-w-md w-full">
-        <h2 className="text-center text-xl font-semibold text-gray-800 mb-6">
-          Reference Data Management
-        </h2>
+    <div className="min-h-screen bg-[#e9f1fd] flex flex-col items-center justify-start py-10 px-4">
+      {/* Title */}
+      <h1 className="text-2xl font-bold text-gray-900 mb-10">
+        Reference Data Management
+      </h1>
 
-        <div className="text-sm text-gray-700 mb-6">
-          <p>
-            <strong>Client:</strong> 014 - General Dynamics
-          </p>
-          <p>
-            <strong>Matter:</strong> 03S - Methods
-          </p>
+      {/* Card */}
+      <div className="bg-white rounded-2xl shadow-lg px-10 py-8 w-full max-w-lg">
+        {/* Client and Matter Info */}
+        <div className="mb-6 text-gray-700 text-sm leading-relaxed">
+          <p><span className="font-semibold">Client:</span> 014 - General Dynamics</p>
+          <p><span className="font-semibold">Matter:</span> 03S - Methods</p>
         </div>
 
+        {/* Form */}
         <form className="space-y-5">
           {/* Ref. ID */}
-          <div className="flex items-center justify-between">
-            <label className="text-gray-700 font-medium w-24">Ref. ID</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Ref. ID
+            </label>
             <input
               type="text"
               value="G-100"
               readOnly
-              className="bg-gray-300 text-gray-800 font-semibold px-3 py-2 rounded-md w-64 cursor-not-allowed"
+              className="w-full px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md cursor-not-allowed"
             />
           </div>
 
           {/* Phase Task */}
-          <div className="flex items-center justify-between">
-            <label className="text-gray-700 font-medium w-24">Phase Task</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Phase Task
+            </label>
             <select
               value={phaseTask}
               onChange={(e) => setPhaseTask(e.target.value)}
-              className="w-64 px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option>PA-100 Assessment</option>
               <option>PA-200 Review</option>
@@ -47,12 +51,14 @@ const RefDataMgt = () => {
           </div>
 
           {/* Activity */}
-          <div className="flex items-center justify-between">
-            <label className="text-gray-700 font-medium w-24">Activity</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Activity
+            </label>
             <select
               value={activity}
               onChange={(e) => setActivity(e.target.value)}
-              className="w-64 px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option>A-101 Plan</option>
               <option>A-102 Execute</option>
@@ -61,12 +67,12 @@ const RefDataMgt = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="text-center pt-4">
+          <div className="pt-4 text-center">
             <button
               type="submit"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-full transition-all duration-200 font-semibold"
+              className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all duration-200"
             >
-              Insert
+              Insert Reference ID
             </button>
           </div>
         </form>
