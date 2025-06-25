@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
         </div>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-auto bg-gray-50">{children}</div>
+        <div className="flex-1 overflow-auto bg-blue-50">{children}</div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const RefDataMgt = () => {
   const [activity, setActivity] = useState("A-101 Plan");
 
   return (
-    <div className="bg-[#e9f1fd] flex flex-col items-center justify-start py-10 px-4">
+    <div className="h-screen bg-blue-50 flex flex-col items-center justify-start py-10 px-4">
       {/* Title */}
       <h1 className="text-2xl font-bold text-gray-900 mb-10">
         Reference Data Management
@@ -15,8 +15,13 @@ const RefDataMgt = () => {
       <div className="bg-white rounded-2xl shadow-lg px-10 py-8 w-full max-w-lg">
         {/* Client and Matter Info */}
         <div className="mb-6 text-gray-700 text-sm leading-relaxed">
-          <p><span className="font-semibold">Client:</span> 014 - General Dynamics</p>
-          <p><span className="font-semibold">Matter:</span> 03S - Methods</p>
+          <p>
+            <span className="font-semibold">Client:</span> 014 - General
+            Dynamics
+          </p>
+          <p>
+            <span className="font-semibold">Matter:</span> 03S - Methods
+          </p>
         </div>
 
         {/* Form */}

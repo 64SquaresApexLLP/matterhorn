@@ -165,7 +165,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-blue-50 p-6">
       <style jsx>{`
         @keyframes slideInUp {
           from { transform: translateY(30px); opacity: 0; }
