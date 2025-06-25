@@ -138,7 +138,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className={`flex justify-between items-center ${animationTrigger ? "animate-fade-in" : ""}`}>
           <div>
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">Dashboard</h1>
+            <h1 className="text-3xl font-semibold text-slate-800 mb-2">Dashboard</h1>
             <p className="text-slate-600">Legal practice management overview</p>
           </div>
           <div className="flex items-center space-x-4">
@@ -188,7 +188,7 @@ const Dashboard = () => {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-4xl font-bold text-gray-800">{todayStats.totalMatters}</span>
+                  <span className="text-4xl font-semibold text-gray-800">{todayStats.totalMatters}</span>
                   <span className="text-gray-500 text-sm">matters</span>
                 </div>
               </div>
@@ -201,7 +201,7 @@ const Dashboard = () => {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Opened</p>
-                    <p className="text-xl font-bold text-gray-800">{todayStats.opened} <span className="text-gray-400 font-normal text-sm">matters</span></p>
+                    <p className="text-xl font-semibold text-gray-800">{todayStats.opened} <span className="text-gray-400 font-normal text-sm">matters</span></p>
                   </div>
                 </div>
                 
@@ -211,7 +211,7 @@ const Dashboard = () => {
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Closed</p>
-                    <p className="text-xl font-bold text-gray-800">{todayStats.closed} <span className="text-gray-400 font-normal text-sm">matters</span></p>
+                    <p className="text-xl font-semibold text-gray-800">{todayStats.closed} <span className="text-gray-400 font-normal text-sm">matters</span></p>
                   </div>
                 </div>
               </div>
@@ -272,9 +272,9 @@ const Dashboard = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-green-500 text-lg font-bold">+{todayStats.recentIncrease}</p>
+                <p className="text-green-500 text-lg font-semibold">+{todayStats.recentIncrease}</p>
                 <p className="text-gray-500 text-sm mb-1">Pending</p>
-                <p className="text-gray-800 text-lg font-bold">{todayStats.pending.toLocaleString()}</p>
+                <p className="text-gray-800 text-lg font-semibold">{todayStats.pending.toLocaleString()}</p>
               </div>
               <div className="text-center">
                 <div className="relative mb-4">
@@ -302,9 +302,9 @@ const Dashboard = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-green-500 text-lg font-bold">+{todayStats.last48hIncrease}</p>
+                <p className="text-green-500 text-lg font-semibold">+{todayStats.last48hIncrease}</p>
                 <p className="text-gray-500 text-sm mb-1">Active</p>
-                <p className="text-gray-800 text-lg font-bold">{todayStats.active.toLocaleString()}</p>
+                <p className="text-gray-800 text-lg font-semibold">{todayStats.active.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -316,12 +316,12 @@ const Dashboard = () => {
           <div className={`lg:col-span-2 glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-slide-up" : ""}`}>
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h3 className="text-xl font-bold text-slate-800">Total Clients</h3>
+                <h3 className="text-xl font-semibold text-slate-800">Total Clients</h3>
                 <p className="text-slate-600 text-sm">Previous Month - November 2024</p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-slate-600">November</p>
-                <p className="text-2xl font-bold text-slate-800">892,443</p>
+                <p className="text-2xl font-semibold text-slate-800">892,443</p>
               </div>
             </div>
             <div className="h-100">
