@@ -9,24 +9,16 @@ const TopNav = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 70 }}
-      className="h-[10vh] bg-gradient-to-r from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] flex items-center justify-between px-6  shadow-md"
+      className="h-[10vh] bg-blue-50 text-[var(--secondary-600)] flex items-center justify-between px-6 shadow-lg border-b border-gray-200"
     >
-      {/* Logo & Title */}
-      <NavLink to="/" className="flex items-center">
-        <img src="./favicon-2.png" alt="logo" className="h-[8vh] pl-1" />
-        <h1 className="font-semibold text-xl sm:text-2xl pl-3 tracking-wide">
-          Matterhorn Back Office Solutions
-        </h1>
-      </NavLink>
-
       {/* Search Bar */}
-      <div className="ml-120 relative hidden md:flex items-center bg-white rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
+      <div className="border border-gray-300 bg-gray-50 ml-[50vw] relative hidden md:flex items-center rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
         <input
           type="text"
           placeholder="Search..."
           className="w-full px-4 py-1 outline-none text-sm"
         />
-        <div className="cursor-pointer bg-[var(--primary)] px-3 py-2 text-[var(--secondary)]">
+        <div className="cursor-pointer bg-white px-3 py-2 text-[var(--secondary)]">
           <FaSearch size={14} />
         </div>
       </div>

@@ -4,16 +4,21 @@ import LeftNav from "./components/LeftNav";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col h-screen">
-      <div className="h-[10vh]">
-        <TopNav />
+    <div className="flex h-screen overflow-hidden">
+      {/* Left Sidebar */}
+      <div className="bg-white h-full">
+        <LeftNav />
       </div>
 
-      <div className="flex flex-1 h-[90vh] overflow-hidden">
-        <div className="h-full">
-          <LeftNav />
+      {/* Right Main Content */}
+      <div className="flex flex-col flex-1 h-full">
+        {/* Top Navigation */}
+        <div className="h-[10vh] w-full">
+          <TopNav />
         </div>
-        <div className="flex-1 overflow-auto">{children}</div>
+
+        {/* Page Content */}
+        <div className="flex-1 overflow-auto bg-gray-50">{children}</div>
       </div>
     </div>
   );

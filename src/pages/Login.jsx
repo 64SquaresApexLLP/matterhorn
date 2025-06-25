@@ -74,7 +74,7 @@ const Login = () => {
 
             <button
               onClick={handleLogin}
-              className="w-full cursor-pointer bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-md transition"
+              className="w-full cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition"
             >
               Sign In
             </button>
