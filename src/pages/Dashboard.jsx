@@ -51,11 +51,11 @@ const Dashboard = () => {
   ];
 
   const mostPopular = [
-    { name: "Practical tips for creating...", views: 21458 },
-    { name: "Steps to build your personal...", views: 17489 },
-    { name: "Designing UX for web 3.0", views: 13491 },
-    { name: "Corporate law essentials", views: 11234 },
-    { name: "Family law procedures", views: 9876 }
+    { name: "Divorce Cases...", views: 94 },
+    { name: "Family Wealth Distribution...", views: 89 },
+    { name: "Murder Cases...", views: 73 },
+    { name: "Corporate law essentials", views: 51 },
+    { name: "Family law procedures", views: 46 }
   ];
 
   const caseTypes = [
@@ -96,49 +96,6 @@ const Dashboard = () => {
     { id: 4, title: "Employment Dispute", client: "Global Industries", status: "Negotiation", priority: "High", date: "2025-06-12" }
   ];
 
-  const CircularProgress = ({ percentage, color, size = "large" }) => {
-    const radius = size === "large" ? 45 : 35;
-    const strokeWidth = size === "large" ? 8 : 6;
-    const normalizedRadius = radius - strokeWidth * 2;
-    const circumference = normalizedRadius * 2 * Math.PI;
-    const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
-
-    return (
-      <div className="relative">
-        <svg
-          height={radius * 2}
-          width={radius * 2}
-          className="transform -rotate-90"
-        >
-          <circle
-            stroke="#E5E7EB"
-            fill="transparent"
-            strokeWidth={strokeWidth}
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-          />
-          <circle
-            stroke={color}
-            fill="transparent"
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-            strokeLinecap="round"
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-            className="transition-all duration-1000 ease-out"
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className={`font-bold ${size === "large" ? "text-xl" : "text-lg"} text-gray-700`}>
-            {percentage}%
-          </span>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-6">
       <style jsx>{`
@@ -163,9 +120,9 @@ const Dashboard = () => {
         .animate-scale-in { animation: scaleIn 0.5s ease-out; }
         .animate-pulse-gentle { animation: pulse 2s infinite; }
         .glass-card {
-          background: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         .card-hover {
@@ -200,32 +157,63 @@ const Dashboard = () => {
 
         {/* Top Row - User Today & Statistics */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* User Today Card */}
-          <div className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`}>
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">User today</h3>
+          {/* User Today Card - Exact Match */}
+          <div className={`glass-card px-8 py-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`}>
+            <h3 className="text-xl font-semibold text-gray-800 mb-8">User today</h3>
+            
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <CircularProgress percentage={65} color="#F59E0B" />
-                <div>
-                  <p className="text-3xl font-bold text-slate-800">{todayStats.totalMatters}</p>
-                  <p className="text-slate-600 text-sm">matters</p>
+              {/* Circular Progress */}
+              <div className="relative">
+                <svg width="140" height="140" className="transform -rotate-90">
+                  {/* Background circle */}
+                  <circle
+                    cx="70"
+                    cy="70"
+                    r="55"
+                    stroke="#E5E7EB"
+                    strokeWidth="12"
+                    fill="none"
+                  />
+                  {/* Progress circle */}
+                  <circle
+                    cx="70"
+                    cy="70"
+                    r="55"
+                    stroke="#F59E0B"
+                    strokeWidth="12"
+                    fill="none"
+                    strokeDasharray={`${(65 / 100) * 345} 345`}
+                    strokeLinecap="round"
+                    className="transition-all duration-1500 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="text-4xl font-bold text-gray-800">{todayStats.totalMatters}</span>
+                  <span className="text-gray-500 text-sm">matters</span>
                 </div>
               </div>
-            </div>
-            <div className="mt-6 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="text-slate-600 text-sm">Opened</span>
+
+              {/* Stats on the right */}
+              <div className="space-y-6 ml-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 bg-gray-600 rounded-sm flex items-center justify-center">
+                    <div className="w-3 h-3 bg-gray-200 rounded-sm"></div>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Opened</p>
+                    <p className="text-xl font-bold text-gray-800">{todayStats.opened} <span className="text-gray-400 font-normal text-sm">matters</span></p>
+                  </div>
                 </div>
-                <span className="font-semibold text-slate-800">{todayStats.opened} matters</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  <span className="text-slate-600 text-sm">Closed</span>
+                
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 bg-orange-200 rounded-sm flex items-center justify-center">
+                    <div className="w-3 h-3 bg-orange-400 rounded-sm"></div>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Closed</p>
+                    <p className="text-xl font-bold text-gray-800">{todayStats.closed} <span className="text-gray-400 font-normal text-sm">matters</span></p>
+                  </div>
                 </div>
-                <span className="font-semibold text-slate-800">{todayStats.closed} matters</span>
               </div>
             </div>
           </div>
@@ -251,24 +239,72 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Statistics */}
-          <div className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`} style={{ animationDelay: "0.2s" }}>
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-slate-800">Statistics</h3>
-              <span className="text-slate-500 text-sm">Last 48h</span>
+          {/* Statistics Card - Exact Match */}
+          <div className={`glass-card px-6 py-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`} style={{ animationDelay: "0.2s" }}>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-semibold text-gray-800">Statistics</h3>
+              <span className="text-blue-500 text-sm font-medium">Last 48h</span>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
-                <CircularProgress percentage={75} color="#EC4899" size="small" />
-                <p className="text-green-500 text-sm font-semibold mt-2">+{todayStats.recentIncrease}</p>
-                <p className="text-slate-600 text-xs">Pending</p>
-                <p className="text-slate-800 font-semibold">{todayStats.pending.toLocaleString()}</p>
+                <div className="relative mb-4">
+                  <svg width="80" height="80" className="transform -rotate-90 mx-auto">
+                    {/* Background circle */}
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="30"
+                      stroke="#E5E7EB"
+                      strokeWidth="8"
+                      fill="none"
+                    />
+                    {/* Progress circle */}
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="30"
+                      stroke="#EC4899"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${(75 / 100) * 188} 188`}
+                      strokeLinecap="round"
+                      className="transition-all duration-1500 ease-out"
+                    />
+                  </svg>
+                </div>
+                <p className="text-green-500 text-lg font-bold">+{todayStats.recentIncrease}</p>
+                <p className="text-gray-500 text-sm mb-1">Pending</p>
+                <p className="text-gray-800 text-lg font-bold">{todayStats.pending.toLocaleString()}</p>
               </div>
               <div className="text-center">
-                <CircularProgress percentage={85} color="#EC4899" size="small" />
-                <p className="text-green-500 text-sm font-semibold mt-2">+{todayStats.last48hIncrease}</p>
-                <p className="text-slate-600 text-xs">Active</p>
-                <p className="text-slate-800 font-semibold">{todayStats.active.toLocaleString()}</p>
+                <div className="relative mb-4">
+                  <svg width="80" height="80" className="transform -rotate-90 mx-auto">
+                    {/* Background circle */}
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="30"
+                      stroke="#E5E7EB"
+                      strokeWidth="8"
+                      fill="none"
+                    />
+                    {/* Progress circle */}
+                    <circle
+                      cx="40"
+                      cy="40"
+                      r="30"
+                      stroke="#EC4899"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${(85 / 100) * 188} 188`}
+                      strokeLinecap="round"
+                      className="transition-all duration-1500 ease-out"
+                    />
+                  </svg>
+                </div>
+                <p className="text-green-500 text-lg font-bold">+{todayStats.last48hIncrease}</p>
+                <p className="text-gray-500 text-sm mb-1">Active</p>
+                <p className="text-gray-800 text-lg font-bold">{todayStats.active.toLocaleString()}</p>
               </div>
             </div>
           </div>
@@ -288,7 +324,7 @@ const Dashboard = () => {
                 <p className="text-2xl font-bold text-slate-800">892,443</p>
               </div>
             </div>
-            <div className="h-80">
+            <div className="h-100">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={clientData}>
                   <defs>
@@ -361,7 +397,7 @@ const Dashboard = () => {
             {/* Case Distribution */}
             <div className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`} style={{ animationDelay: "0.4s" }}>
               <h3 className="text-lg font-semibold text-slate-800 mb-4">Case Distribution</h3>
-              <div className="h-40">
+              <div className="h-30">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
