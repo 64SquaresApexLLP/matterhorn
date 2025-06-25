@@ -52,7 +52,7 @@ const Settings = () => {
 
   useEffect(() => {
     // const saved = setActiveTheme("tealgold");
-    const saved = localStorage.getItem("theme") || setActiveTheme(saved);; // default to tealgold
+    const saved = localStorage.getItem("theme") || setActiveTheme('modern'); // default to tealgold
     // setActiveTheme(saved);
     document.body.className = `theme-${saved}`;
   }, []);

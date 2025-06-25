@@ -14,6 +14,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { MdDataArray } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiLogOut } from "react-icons/fi";
 
@@ -22,6 +23,11 @@ const menuItems = [
   { name: "Clients", icon: <FaUser />, path: "clients" },
   { name: "Matters", icon: <FaFolderOpen />, path: "matters" },
   { name: "Entries", icon: <FaClock />, path: "entries" },
+  {
+    name: "Ref. Data Management",
+    icon: <MdDataArray />,
+    path: "reference-data-mgt",
+  },
   { name: "Invoices", icon: <FaFileInvoice />, path: "invoices" },
   { name: "Payments", icon: <FaMoneyCheckAlt />, path: "payments" },
   { name: "Reports", icon: <FaChartBar />, path: "reports" },
@@ -45,28 +51,44 @@ export default function Nav() {
 
   return (
     <motion.div
-      animate={{ width: isOpen ? 200 : 80 }}
+      animate={{ width: isOpen ? 250 : 80 }}
       className="bg-gradient-to-b from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] shadow-lg overflow-visible flex flex-col justify-between sticky bottom-0 transition-all"
-      style={{ height: "90vh" }}
-      transition={{ duration: 0.4, type: "spring", damping: 15 }}
+      style={{ height: "100vh" }}
+      transition={{ duration: 0.3, type: "spring", damping: 20 }}
     >
       <div>
+        <NavLink to="/" className="flex items-center">
+          {isOpen ? (
+            <img
+              src="./logo.png"
+              alt="logo"
+              className="p-1 h-[8vh] pl-2 pb-0"
+            />
+          ) : (
+            <img
+              src="./favicon-2.png"
+              alt="logo"
+              className="m-2 h-[8vh] pl-1"
+            />
+          )}
+        </NavLink>
+
         {/* Toggle Button */}
         <motion.button
           onClick={toggleSidebar}
           whileTap={{ scale: 0.9 }}
-          className="cursor-pointer absolute top-4 -right-4 z-10 w-8 h-8 bg-[var(--primary)] hover:brightness-110 text-[var(--secondary)] rounded-full flex items-center justify-center shadow-md"
+          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] hover:brightness-110 text-[var(--secondary)] rounded-full flex items-center justify-center shadow-md"
         >
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </motion.button>
 
         {/* Navigation Menu */}
-        <nav className="mt-4 flex flex-col gap-1 relative font-medium">
+        <nav className="mt-6 flex flex-col gap-2 relative font-medium">
           {/* Active Indicator */}
           <motion.div
             className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full"
-            style={{ height: "48px" }}
-            animate={{ y: activeIndex * 49 }}
+            style={{ height: "54px" }}
+            animate={{ y: activeIndex * 56 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
           />
 
@@ -74,7 +96,7 @@ export default function Nav() {
             <motion.div
               key={idx}
               whileHover={{ scale: 1.02 }}
-              className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-all duration-200 relative ${
+              className={`flex items-center gap-4 px-4 py-6 cursor-pointer transition-all duration-200 relative ${
                 activeIndex === idx
                   ? "text-[var(--primary)]"
                   : "hover:bg-[var(--primary)]/20"
