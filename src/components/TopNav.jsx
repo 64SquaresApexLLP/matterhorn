@@ -9,7 +9,7 @@ const TopNav = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 70 }}
-      className="h-[10vh] bg-gradient-to-r from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] flex items-center justify-between px-6 shadow-md"
+      className="h-[10vh] bg-gradient-to-r from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] flex items-center justify-between px-6  shadow-md"
     >
       {/* Logo & Title */}
       <NavLink to="/" className="flex items-center">
@@ -20,7 +20,7 @@ const TopNav = () => {
       </NavLink>
 
       {/* Search Bar */}
-      <div className="ml-108 relative hidden md:flex items-center bg-white rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
+      <div className="ml-120 relative hidden md:flex items-center bg-white rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
         <input
           type="text"
           placeholder="Search..."

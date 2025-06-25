@@ -32,7 +32,7 @@ body.theme-modern {
   --secondary: theme(colors.slate.100);
 }
 
-body.theme-blossom {
+body.theme-dark {
   --bg: theme(colors.black);
   --text: theme(colors.gray.100);
   --primary: theme(colors.gray.100);
@@ -60,7 +60,7 @@ body.theme-modern {
   --secondary-600: #21497d;
 }
 
-body.theme-blossom {
+body.theme-black {
   --secondary-900: #000;
   --secondary-600: #222;
 }

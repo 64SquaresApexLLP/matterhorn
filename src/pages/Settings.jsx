@@ -35,8 +35,8 @@ const themes = [
     },
   },
   {
-    id: "blossom",
-    name: "Blossom",
+    id: "dark",
+    name: "Dark",
     colors: ["bg-pink-100", "bg-pink-500", "bg-pink-900"],
     vars: {
       bg: "pink-100",
