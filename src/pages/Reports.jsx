@@ -120,7 +120,7 @@ const Reports = () => {
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                   }}
                   formatter={(value, name) => {
-                    if (name === 'revenue') return [`₹${value.toLocaleString()}`, 'Revenue'];
+                    if (name === 'revenue') return [`$${value.toLocaleString()}`, 'Revenue'];
                     if (name === 'invoices') return [value, 'Invoices'];
                     return [value, name];
                   }}
