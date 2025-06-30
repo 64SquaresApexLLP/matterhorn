@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route ,Navigate } from "react-router-dom";
 import Layout from "./Layout";
 
 import Login from "./pages/Login";
@@ -13,6 +13,7 @@ import Users from "./pages/Users";
 import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
 import RefDataMgt from "./pages/RefDataMgt";
+import Home from "./pages/Home";
 
 const layoutRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
@@ -32,7 +33,14 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+       {/* Public Routes */}
+       <Route path="/" element={<Navigate to="/home" replace />} />
+
+       
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Protected Routes inside Layout */}
         {layoutRoutes.map(({ path, element }) => (
           <Route key={path} path={path} element={<Layout>{element}</Layout>} />
         ))}
