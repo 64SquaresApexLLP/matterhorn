@@ -7,16 +7,31 @@ const Login = () => {
   const [organization, setOrganization] = useState("");
   const [email, setEmail] = useState("fpopa@matterhorn.global");
   const [password, setPassword] = useState("password123");
+  const [error, setError] = useState("");
 
   const handleLogin = () => {
-    if (organization && email && password) {
+    if (!organization) {
+      setError("Please select an organization.");
+      return;
+    }
+
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    // Dummy check: Replace with real authentication logic
+    if (email === "fpopa@matterhorn.global" && password === "password123") {
+      setError(""); // Clear error
       navigate("/dashboard");
+    } else {
+      setError("Invalid email or password.");
     }
   };
 
   return (
     <div className="min-h-screen flex">
-      
+      {/* Sidebar */}
       <div className="w-[25vw] bg-blue-500 flex flex-col items-center justify-center p-8">
         <img src="/logo-1.webp" alt="Logo" className="w-[90%] mb-4" />
         <p className="text-gray-200 text-center text-[100%] font-medium uppercase tracking-wide">
@@ -24,25 +39,27 @@ const Login = () => {
         </p>
       </div>
 
-      
+      {/* Login Section */}
       <div
         className="w-[75vw] relative bg-cover bg-center"
-        style={{
-          backgroundImage: "url('./bg.png')",
-        }}
+        style={{ backgroundImage: "url('./bg.png')" }}
       >
-        
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 py-12">
           <div className="border-blue-400 border-1 bg-white rounded-xl shadow-xl p-8 w-full max-w-md space-y-6">
             <h2 className="text-2xl font-semibold text-center text-gray-800">
               Sign In
             </h2>
 
-            
+            {/* Alert box */}
+            {error && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm">
+                {error}
+              </div>
+            )}
+
+            {/* Organization Selector */}
             <div>
-              <label className="block text-sm text-gray-600 mb-1">
-                Organization
-              </label>
+              <label className="block text-sm text-gray-600 mb-1">Organization</label>
               <select
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
@@ -57,7 +74,7 @@ const Login = () => {
               </select>
             </div>
 
-            
+            {/* Email */}
             <div>
               <label className="block text-sm text-gray-600 mb-1">Email</label>
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
@@ -73,11 +90,9 @@ const Login = () => {
               </div>
             </div>
 
-            
+            {/* Password */}
             <div>
-              <label className="block text-sm text-gray-600 mb-1">
-                Password
-              </label>
+              <label className="block text-sm text-gray-600 mb-1">Password</label>
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
                 <span className="px-3 text-gray-500">
                   <FaLock />
@@ -91,7 +106,7 @@ const Login = () => {
               </div>
             </div>
 
-            
+            {/* Sign In Button */}
             <button
               onClick={handleLogin}
               className="w-full cursor-pointer bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition"
@@ -99,7 +114,7 @@ const Login = () => {
               Sign In
             </button>
 
-            
+            {/* Links */}
             <div className="flex justify-between text-sm pt-2">
               <span className="text-blue-600 hover:underline cursor-pointer">
                 Forgot Password?
