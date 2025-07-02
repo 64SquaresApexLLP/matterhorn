@@ -7,6 +7,11 @@ function HomePage() {
 
     const navigate = useNavigate();
 
+    const [isHovered, setIsHovered] = useState(false);
+    //const [searchQuery, setSearchQuery] = useState("");
+
+    const shouldExpand = isHovered || searchQuery.trim() !== "";
+
     return (
         <div className="font-sans text-black relative">
             <header className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white shadow-md">
@@ -29,15 +34,28 @@ function HomePage() {
             <div className="relative z-10">
                 <div className="absolute top-[-1.5rem] left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-md shadow-md flex flex-col md:flex-row justify-between items-center px-4 py-3">
                     {/* Search Bar */}
-                    <div className="flex items-center bg-blue-50 rounded-md px-3 py-2 mb-2 md:mb-0 border border-white">
-                        <FaSearch className="text-blue-400 text-lg mr-2" />
-                        <input
-                            type="text"
-                            placeholder="Search legal services..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500 w-45"
-                        />
+                    <div
+                        className="relative"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        <div
+                            className={`flex items-center bg-blue-50 rounded-md px-2.5 py-2 border border-white transition-all duration-300 ease-in-out ${shouldExpand ? "w-64" : "w-12"
+                                }`}
+                        >
+                            <FaSearch
+                                className={`text-blue-400 transition-all duration-300 ${shouldExpand ? "text-xl " : "text-2xl ml-1"
+                                    }`}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search legal services..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className={`bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500 ml-2 transition-all duration-300 ease-in-out ${shouldExpand ? "w-full opacity-100" : "w-0 opacity-0"
+                                    }`}
+                            />
+                        </div>
                     </div>
 
                     {/* Navigation */}
