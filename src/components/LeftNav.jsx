@@ -141,7 +141,7 @@ export default function Nav() {
           <button
             className={`cursor-pointer w-full mt-4 flex items-center ${
               isOpen ? "justify-start gap-3 px-2" : "justify-center"
-            } py-2 text-left bg-red-600 hover:bg-red-700 rounded-lg text-white`}
+            } py-2 text-left bg-yellow-600 hover:bg-yellow-700 rounded-lg text-white`}
             onClick={() => {
               console.log("Logout clicked");
             }}

@@ -12,7 +12,7 @@ const TopNav = () => {
       className="h-[10vh] bg-blue-50 text-[var(--secondary-600)] flex items-center justify-between px-6 shadow-lg border-b border-gray-200"
     >
       {/* Search Bar */}
-      <div className="border border-gray-300 bg-gray-50 ml-[50vw] relative hidden md:flex items-center rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
+      <div className="border border-gray-300 bg-gray-50 ml-[30vw] relative hidden md:flex items-center rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
         <input
           type="text"
           placeholder="Search..."

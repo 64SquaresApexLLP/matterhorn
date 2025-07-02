@@ -9,24 +9,11 @@ function HomePage() {
 
     return (
         <div className="font-sans text-black relative">
-
-
-
-            {/* Header */}
             <header className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white shadow-md">
                 <div className="flex flex-col md:flex-row items-center justify-between py-7 px-10 md:px-2 max-w-6xl mx-auto">
-                    {/* Logo + Title */}
                     <div className="flex flex-col items-center space-x-2 text-center">
-                        <img src="/favicon-2.png" alt="Matterhorn Logo" className="w-12 h-12 mb-1" />
-                        <div className="w-fit">
-                            <h1 className="text-xl md:text-2xl font-bold leading-tight">MATTERHORN</h1>
-                            <p className="text-xs text-center tracking-[0.1em] uppercase">BACK OFFICE SOLUTIONS</p>
-                        </div>
+                        <img src="/logo.png" alt="Matterhorn Logo" className="w-50 h-12 mb-1" />
                     </div>
-
-
-                    {/* Social Icons */}
-
 
                     <div className="flex space-x-3">
                         <FaFacebookF className="text-white hover:text-blue-400 cursor-pointer transition-colors" />
@@ -66,13 +53,13 @@ function HomePage() {
                     <div className="flex space-x-2">
                         <button
                             onClick={() => navigate('/login')}
-                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300"
+                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
                         >
                             SIGN IN
                         </button>
                         <button
                             onClick={() => navigate('/login')}
-                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300"
+                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
                         >
                             SIGN UP
                         </button>
