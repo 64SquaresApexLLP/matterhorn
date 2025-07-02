@@ -14,30 +14,25 @@ function HomePage() {
 
             {/* Header */}
             <header className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white shadow-md">
-            <div className="flex flex-col md:flex-row items-center justify-between py-7 px-10 md:px-2 max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center justify-between py-7 px-10 md:px-2 max-w-6xl mx-auto">
                     {/* Logo + Title */}
-                    <div className="flex items-center space-x-2">
-                        <div>
-                            <img src="/favicon-2.png" alt="Matterhorn Logo" className="items-center w-12 h-12" />
+                    <div className="flex flex-col items-center space-x-2 text-center">
+                        <img src="/favicon-2.png" alt="Matterhorn Logo" className="w-12 h-12 mb-1" />
+                        <div className="w-fit">
                             <h1 className="text-xl md:text-2xl font-bold leading-tight">MATTERHORN</h1>
-                            <p className="text-xs">BUSINESS LAW SOLUTIONS</p>
+                            <p className="text-xs text-center tracking-[0.1em] uppercase">BACK OFFICE SOLUTIONS</p>
                         </div>
                     </div>
 
+
                     {/* Social Icons */}
-                    <div className="flex items-center space-x-4 mt-4 md:mt-0 text-lg">
-                        <div className="bg-[#3b5998] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
-                            <FaFacebookF />
-                        </div>
-                        <div className="bg-[#0077b5] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
-                            <FaLinkedinIn />
-                        </div>
-                        <div className="bg-black text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
-                            <FaXTwitter />
-                        </div>
-                        <div className="bg-[#FF0000] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
-                            <FaYoutube />
-                        </div>
+
+
+                    <div className="flex space-x-3">
+                        <FaFacebookF className="text-white hover:text-blue-400 cursor-pointer transition-colors" />
+                        <FaLinkedinIn className="text-white hover:text-blue-400 cursor-pointer transition-colors" />
+                        <FaXTwitter className="text-white hover:text-blue-400 cursor-pointer transition-colors" />
+                        <FaYoutube className="text-white hover:text-blue-400 cursor-pointer transition-colors" />
                     </div>
 
                 </div>
@@ -87,37 +82,37 @@ function HomePage() {
 
             {/* Hero Section */}
             <section className="relative flex flex-col items-start justify-center px-4 md:px-8 pt-24 pb-12 max-w-7xl mx-auto text-left min-h-1/2 overflow-hidden">
-  {/* Background Images - Positioned Left & Right */}
-  <div className="absolute inset-0 -z-10">
-    {/* Graph on Left */}
-    <img
-      src="/img2.png"
-      alt="Graph background"
-      className="absolute top-0 left-0 h-full w-1/2 object-cover opacity-100"
-    />
-    {/* Law Illustration on Right */}
-    <img
-      src="/img1.png"
-      alt="Law illustration background"
-      className="absolute top-0 right-0 h-full w-1/2 object-cover opacity-70"
-    />
-  </div>
+                {/* Background Images - Positioned Left & Right */}
+                <div className="absolute inset-0 -z-10">
+                    {/* Graph on Left */}
+                    <img
+                        src="/img2.png"
+                        alt="Graph background"
+                        className="absolute top-0 left-0 h-full w-1/2 object-cover opacity-100"
+                    />
+                    {/* Law Illustration on Right */}
+                    <img
+                        src="/img1.png"
+                        alt="Law illustration background"
+                        className="absolute top-0 right-0 h-full w-1/2 object-cover opacity-70"
+                    />
+                </div>
 
-  {/* Content */}
-  <div className="relative z-10 text-left max-w-2xl">
-    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-      CHANGING THE <br />
-      <span className="text-blue-700">BUSINESS OF LAW</span>
-    </h1>
-    <p className="text-lg md:text-xl text-gray-800 mb-8">
-      Expert legal solutions for modern businesses. We provide comprehensive legal services
-      to help your company navigate complex regulatory landscapes and achieve sustainable growth.
-    </p>
-    <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
-      GET STARTED
-    </button>
-  </div>
-</section>
+                {/* Content */}
+                <div className="relative z-10 text-left max-w-2xl">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        CHANGING THE <br />
+                        <span className="text-blue-700">BUSINESS OF LAW</span>
+                    </h1>
+                    <p className="text-lg md:text-xl text-gray-800 mb-8">
+                        Expert legal solutions for modern businesses. We provide comprehensive legal services
+                        to help your company navigate complex regulatory landscapes and achieve sustainable growth.
+                    </p>
+                    <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
+                        GET STARTED
+                    </button>
+                </div>
+            </section>
 
 
 
@@ -223,7 +218,7 @@ function HomePage() {
             </section>
 
             {/* Testimonials Section - Blue Background */}
-            <section className="bg-blue-600 py-16">
+            <section className="bg-blue-800 py-16">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
@@ -309,18 +304,26 @@ function HomePage() {
                                 <img src="/favicon-2.png" alt="Matterhorn Logo" className="w-8 h-8 mr-2" />
                                 <div>
                                     <h3 className="font-bold text-lg">MATTERHORN</h3>
-                                    <p className="text-xs text-gray-400">BUSINESS LAW SOLUTIONS</p>
+                                    <p className="text-xs text-gray-400">BACK OFFICE SOLUTIONS</p>
                                 </div>
                             </div>
                             <p className="text-gray-400 text-sm mb-4">
                                 Expert legal services for modern businesses.
                                 Your trusted partner in legal excellence.
                             </p>
-                            <div className="flex space-x-3">
-                                <FaFacebookF className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
-                                <FaLinkedinIn className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
-                                <FaXTwitter className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
-                                <FaYoutube className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
+                            <div className="flex items-center space-x-4 mt-4 md:mt-0 text-lg">
+                                <div className="bg-[#3b5998] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
+                                    <FaFacebookF />
+                                </div>
+                                <div className="bg-[#0077b5] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
+                                    <FaLinkedinIn />
+                                </div>
+                                <div className="bg-black text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
+                                    <FaXTwitter />
+                                </div>
+                                <div className="bg-[#FF0000] text-white p-2 rounded-full hover:scale-110 transition-all duration-300 cursor-pointer">
+                                    <FaYoutube />
+                                </div>
                             </div>
                         </div>
 
@@ -370,7 +373,7 @@ function HomePage() {
 
                     <div className="border-t border-gray-800 mt-8 pt-8 text-center">
                         <p className="text-gray-400 text-sm">
-                            © 2025 Matterhorn Business Law Solutions. All rights reserved. |
+                            © 2025 Matterhorn Back Office Solutions. All rights reserved. |
                             <a href="#" className="hover:text-white ml-1">Privacy Policy</a> |
                             <a href="#" className="hover:text-white ml-1">Terms of Service</a>
                         </p>

@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
-      <div className="w-[25vw] bg-blue-500 flex flex-col items-center justify-center p-8">
+      <div className="w-[25vw] bg-gradient-to-r from-[#0E44A4] to-[#1167CC] flex flex-col items-center justify-center p-8">
         <img src="/logo-1.webp" alt="Logo" className="w-[90%] mb-4" />
         <p className="text-gray-200 text-center text-[100%] font-medium uppercase tracking-wide">
           Changing the Business of Law
@@ -42,10 +42,13 @@ const Login = () => {
       {/* Login Section */}
       <div
         className="w-[75vw] relative bg-cover bg-center"
-        style={{ backgroundImage: "url('./bg.png')" }}
+        style={{ backgroundImage: "linear-gradient(to top, white 50px,transparent 800px), url('./bg.png')" ,
+                 
+                 
+         }}
       >
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 py-12">
-          <div className="border-blue-400 border-1 bg-white rounded-xl shadow-xl p-8 w-full max-w-md space-y-6">
+          <div className="border-blue-400 border-1 bg-white rounded-xl shadow-xl p-4 w-full max-w-sm space-y-4">
             <h2 className="text-2xl font-semibold text-center text-gray-800">
               Sign In
             </h2>
