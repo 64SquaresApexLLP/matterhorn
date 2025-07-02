@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -51,7 +50,7 @@ export default function Nav() {
       className="bg-gradient-to-b from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] shadow-lg flex flex-col justify-between sticky bottom-0"
       style={{ height: "100vh", width: isOpen ? 250 : 80 }}
     >
-      <div className="">
+      <div>
         <NavLink to="/" className="flex items-center">
           <div className="flex items-center">
             <motion.div
@@ -86,29 +85,36 @@ export default function Nav() {
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </button>
 
-        <nav className="mt-6 flex flex-col gap-2 relative font-medium">
+        <nav className="mt-4 relative font-medium">
+          {/* Active indicator */}
           <div
-            className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full"
-            style={{ height: "48px", top: `${activeIndex * 48}px` }}
+            className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full transition-all duration-300 ease-in-out"
+            style={{ 
+              height: "45px", 
+              top: `${activeIndex * 55 + 6}px`,
+              transform: "translateY(0)"
+            }}
           />
-
-          {menuItems.map((item, idx) => (
-            <div
-              key={idx}
-              className={`flex items-center gap-4 px-4 py-6 cursor-pointer relative ${
-                activeIndex === idx
-                  ? "text-yellow-300"
-                  : "hover:bg-[var(--primary)]/20"
-              } ${!isOpen ? "justify-center" : ""}`}
-              onClick={() => handleMenuClick(idx)}
-              style={{ height: "48px" }}
-            >
-              <span className="text-lg flex-shrink-0">{item.icon}</span>
-              {isOpen && (
-                <span className="text-sm whitespace-nowrap">{item.name}</span>
-              )}
-            </div>
-          ))}
+          
+          {/* Menu items */}
+          <div className="flex flex-col gap-2">
+            {menuItems.map((item, idx) => (
+              <div
+                key={idx}
+                className={`flex items-center gap-4 px-4 h-12 cursor-pointer relative transition-colors duration-200 ${
+                  activeIndex === idx
+                    ? "text-yellow-300 bg-[var(--primary)]/10"
+                    : "hover:bg-[var(--primary)]/20"
+                } ${!isOpen ? "justify-center" : ""}`}
+                onClick={() => handleMenuClick(idx)}
+              >
+                <span className="text-lg flex-shrink-0">{item.icon}</span>
+                {isOpen && (
+                  <span className="text-sm whitespace-nowrap">{item.name}</span>
+                )}
+              </div>
+            ))}
+          </div>
         </nav>
       </div>
 
