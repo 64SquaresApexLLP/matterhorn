@@ -81,7 +81,7 @@ export default function Nav() {
 
         <button
           onClick={toggleSidebar}
-          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-[var(--secondary)] rounded-full flex items-center justify-center shadow-md"
+          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-md"
         >
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </button>
@@ -97,7 +97,7 @@ export default function Nav() {
               key={idx}
               className={`flex items-center gap-4 px-4 py-6 cursor-pointer relative ${
                 activeIndex === idx
-                  ? "text-[var(--primary)]"
+                  ? "text-yellow-300"
                   : "hover:bg-[var(--primary)]/20"
               } ${!isOpen ? "justify-center" : ""}`}
               onClick={() => handleMenuClick(idx)}
@@ -144,6 +144,7 @@ export default function Nav() {
             } py-2 text-left bg-yellow-600 hover:bg-yellow-700 rounded-lg text-white`}
             onClick={() => {
               console.log("Logout clicked");
+              navigate("/");
             }}
           >
             <FiLogOut className="text-lg" />
