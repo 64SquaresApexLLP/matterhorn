@@ -94,7 +94,7 @@ function HomePage() {
                     <img
                         src="/img1.png"
                         alt="Law illustration background"
-                        className="absolute top-0 right-0 h-full w-1/2 object-cover opacity-70"
+                        className="absolute top-0 right-0 h-full w-1/2 object-cover opacity-100"
                     />
                 </div>
 
