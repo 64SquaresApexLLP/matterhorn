@@ -11,6 +11,8 @@ import {
   FiCalendar,
 } from "react-icons/fi";
 
+import { useNavigate } from "react-router-dom";
+
 const Entries = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -231,6 +233,12 @@ const Entries = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/entries/new");
+  };
+
   return (
     <div className="min-h-screen bg-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
@@ -248,7 +256,10 @@ const Entries = () => {
               </span>
             </p>
           </div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+          <button
+            onClick={handleClick}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors"
+          >
             <FiPlus className="h-5 w-5" />
             <span>New Entry</span>
           </button>

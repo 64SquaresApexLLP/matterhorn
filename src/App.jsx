@@ -14,6 +14,7 @@ import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
 import RefDataMgt from "./pages/RefDataMgt";
 import Home from "./pages/Home";
+import NewEntry from "./pages/NewEntry";
 
 const layoutRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
@@ -27,6 +28,7 @@ const layoutRoutes = [
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/settings", element: <Settings /> },
   { path: "/reference-data-mgt", element: <RefDataMgt /> },
+  { path: "/entries/new", element: <NewEntry /> },
 ];
 
 function App() {
