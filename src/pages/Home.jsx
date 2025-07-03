@@ -32,58 +32,57 @@ function HomePage() {
 
             {/* Floating Nav Bar */}
             <div className="relative z-10">
-                <div className="absolute top-[-1.5rem] left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-md shadow-md flex flex-col md:flex-row justify-between items-center px-4 py-3">
-                    {/* Search Bar */}
-                    <div
-                        className="relative"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
-                        <div
-                            className={`flex items-center bg-blue-50 rounded-md px-2.5 py-2 border border-white transition-all duration-300 ease-in-out ${shouldExpand ? "w-64" : "w-12"
-                                }`}
-                        >
-                            <FaSearch
-                                className={`text-blue-400 transition-all duration-300 ${shouldExpand ? "text-xl " : "text-2xl ml-1"
-                                    }`}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Search legal services..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className={`bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500 ml-2 transition-all duration-300 ease-in-out ${shouldExpand ? "w-full opacity-100" : "w-0 opacity-0"
-                                    }`}
-                            />
-                        </div>
-                    </div>
+  <div className="absolute top-[-1.5rem] left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-md shadow-md flex flex-col md:flex-row justify-between items-center px-4 py-3">
 
-                    {/* Navigation */}
-                    <nav className="flex flex-wrap justify-center gap-4 text-sm font-medium text-black mb-2 md:mb-0 md:ml-4">
-                        <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">HOME</a>
-                        <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">ABOUT US</a>
-                        <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">SERVICES</a>
-                        <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">BLOG</a>
-                        <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">CONTACT</a>
-                    </nav>
+    {/* Search Bar */}
+    <div
+      className="relative flex-1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className={`flex items-center bg-blue-50 rounded-md px-2.5 py-2 border border-white transition-all duration-300 ease-in-out ${shouldExpand ? "w-64" : "w-12"}`}
+      >
+        <FaSearch
+          className={`text-blue-400 transition-all duration-300 ${shouldExpand ? "text-xl " : "text-2xl ml-1"}`}
+        />
+        <input
+          type="text"
+          placeholder="Search legal services..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className={`bg-transparent outline-none text-sm text-gray-700 placeholder-gray-500 ml-2 transition-all duration-300 ease-in-out ${shouldExpand ? "w-full opacity-100" : "w-0 opacity-0"}`}
+        />
+      </div>
+    </div>
 
-                    {/* Buttons */}
-                    <div className="flex space-x-2">
-                        <button
-                            onClick={() => navigate('/login')}
-                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
-                        >
-                            SIGN IN
-                        </button>
-                        <button
-                            onClick={() => navigate('/login')}
-                            className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
-                        >
-                            SIGN UP
-                        </button>
-                    </div>
-                </div>
-            </div>
+    {/* Navigation */}
+    <nav className="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-wrap justify-center gap-4 text-sm font-medium text-black">
+      <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">HOME</a>
+      <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">ABOUT US</a>
+      <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">SERVICES</a>
+      <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">BLOG</a>
+      <a href="#" className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300">CONTACT</a>
+    </nav>
+
+    {/* Buttons */}
+    <div className="flex space-x-2">
+      <button
+        onClick={() => navigate('/login')}
+        className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
+      >
+        SIGN IN
+      </button>
+      <button
+        onClick={() => navigate('/login')}
+        className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
+      >
+        SIGN UP
+      </button>
+    </div>
+  </div>
+</div>
+
 
             {/* Hero Section */}
             <section className="relative flex flex-col items-start justify-center px-4 md:px-8 pt-24 pb-12 max-w-7xl mx-auto text-left min-h-1/2 overflow-hidden">
@@ -107,7 +106,10 @@ function HomePage() {
                 <div className="relative z-10 text-left max-w-2xl">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                         CHANGING THE <br />
-                        <span className="text-blue-700">BUSINESS OF LAW</span>
+                        <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
+                            BUSINESS OF LAW
+                        </span>
+
                     </h1>
                     <p className="text-lg md:text-xl text-gray-800 mb-8">
                         Expert legal solutions for modern businesses. We provide comprehensive legal services
@@ -192,7 +194,7 @@ function HomePage() {
                                 </div>
                             </div>
 
-                            <button className="bg-blue-700 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center">
+                            <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center">
                                 Learn More <FaArrowRight className="ml-2" />
                             </button>
                         </div>
@@ -223,7 +225,7 @@ function HomePage() {
             </section>
 
             {/* Testimonials Section - Blue Background */}
-            <section className="bg-blue-800 py-16">
+            <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
@@ -289,7 +291,7 @@ function HomePage() {
                         your business thrive in today's competitive landscape.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold">
+                        <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold">
                             Schedule Consultation
                         </button>
                         <button className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-gray-800 transition-all duration-300 font-semibold">

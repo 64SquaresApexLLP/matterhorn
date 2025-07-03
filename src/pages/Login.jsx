@@ -42,7 +42,7 @@ const Login = () => {
       {/* Login Section */}
       <div
         className="w-[75vw] relative bg-cover bg-center"
-        style={{ backgroundImage: "linear-gradient(to top, white 50px,transparent 800px), url('./bg.png')" ,
+        style={{ backgroundImage: "linear-gradient(to top, white 50px,transparent 50px), url('./bg.png')" ,
                  
                  
          }}
