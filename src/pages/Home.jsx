@@ -19,14 +19,13 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import FadeInWhenVisible from "../components/FadeInWhenVisible";
+
 function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
-
   const navigate = useNavigate();
 
   const [isHovered, setIsHovered] = useState(false);
-  //const [searchQuery, setSearchQuery] = useState("");
-
   const shouldExpand = isHovered || searchQuery.trim() !== "";
 
   return (
@@ -159,7 +158,7 @@ function HomePage() {
               BUSINESS OF LAW
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-800 mb-8 w-[80%]">
+          <p className="text-lg md:text-xl text-gray-800 mb-8">
             Expert legal solutions for modern businesses. We provide
             comprehensive legal services to help your company navigate complex
             regulatory landscapes and achieve sustainable growth.
@@ -170,221 +169,233 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Services Section - Dark Blue Background */}
-      <section className="bg-slate-900 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our Legal Services
-            </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Comprehensive legal expertise tailored to your business needs
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
-              <FaBalanceScale className="text-4xl text-blue-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Corporate Law</h3>
-              <p className="text-gray-300">
-                Formation, governance, and compliance for businesses of all
-                sizes.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
-              <FaHandshake className="text-4xl text-green-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Contract Law</h3>
-              <p className="text-gray-300">
-                Drafting, reviewing, and negotiating contracts to protect your
-                interests.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
-              <FaShieldAlt className="text-4xl text-red-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">
-                Intellectual Property
-              </h3>
-              <p className="text-gray-300">
-                Protecting your innovations, trademarks, and creative assets.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
-              <FaUsers className="text-4xl text-purple-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Employment Law</h3>
-              <p className="text-gray-300">
-                Workplace policies, disputes, and compliance with labor
-                regulations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section - Light Gray Background */}
-      <section className="bg-gray-100 py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-                Why Choose <span className="text-blue-700">Matterhorn</span>?
+      <FadeInWhenVisible>
+        {/* Services Section*/}
+        <section className="bg-slate-900 text-white py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Our Legal Services
               </h2>
-              <p className="text-gray-600 text-lg mb-6">
-                With over 25 years of combined experience, our team of legal
-                experts has helped thousands of businesses navigate complex
-                legal challenges and achieve their goals.
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+                Comprehensive legal expertise tailored to your business needs
               </p>
+            </div>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center">
-                  <FaCheck className="text-green-500 mr-3" />
-                  <span className="text-gray-700">
-                    Experienced legal professionals
-                  </span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
+                <FaBalanceScale className="text-4xl text-blue-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Corporate Law</h3>
+                <p className="text-gray-300">
+                  Formation, governance, and compliance for businesses of all
+                  sizes.
+                </p>
+              </div>
+
+              <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
+                <FaHandshake className="text-4xl text-green-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Contract Law</h3>
+                <p className="text-gray-300">
+                  Drafting, reviewing, and negotiating contracts to protect your
+                  interests.
+                </p>
+              </div>
+
+              <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
+                <FaShieldAlt className="text-4xl text-red-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">
+                  Intellectual Property
+                </h3>
+                <p className="text-gray-300">
+                  Protecting your innovations, trademarks, and creative assets.
+                </p>
+              </div>
+
+              <div className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-all duration-300 hover:scale-105">
+                <FaUsers className="text-4xl text-purple-400 mb-4" />
+                <h3 className="text-xl font-semibold mb-3">Employment Law</h3>
+                <p className="text-gray-300">
+                  Workplace policies, disputes, and compliance with labor
+                  regulations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeInWhenVisible>
+
+      {/* About Section */}
+      <FadeInWhenVisible delay={0.1}>
+        <section className="bg-gray-100 py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+                  Why Choose <span className="text-blue-700">Matterhorn</span>?
+                </h2>
+                <p className="text-gray-600 text-lg mb-6">
+                  With over 25 years of combined experience, our team of legal
+                  experts has helped thousands of businesses navigate complex
+                  legal challenges and achieve their goals.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <FaCheck className="text-green-500 mr-3" />
+                    <span className="text-gray-700">
+                      Experienced legal professionals
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaCheck className="text-green-500 mr-3" />
+                    <span className="text-gray-700">
+                      Personalized legal strategies
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaCheck className="text-green-500 mr-3" />
+                    <span className="text-gray-700">
+                      Transparent pricing structure
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaCheck className="text-green-500 mr-3" />
+                    <span className="text-gray-700">24/7 client support</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <FaCheck className="text-green-500 mr-3" />
-                  <span className="text-gray-700">
-                    Personalized legal strategies
-                  </span>
+
+                <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center">
+                  Learn More <FaArrowRight className="ml-2" />
+                </button>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
+                  Our Track Record
+                </h3>
+                <div className="grid grid-cols-2 gap-6 text-center">
+                  <div>
+                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                      500+
+                    </div>
+                    <div className="text-gray-600">Cases Won</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                      1000+
+                    </div>
+                    <div className="text-gray-600">Happy Clients</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                      25+
+                    </div>
+                    <div className="text-gray-600">Years Experience</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                      98%
+                    </div>
+                    <div className="text-gray-600">Success Rate</div>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <FaCheck className="text-green-500 mr-3" />
-                  <span className="text-gray-700">
-                    Transparent pricing structure
-                  </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeInWhenVisible>
+
+      {/* Testimonials Section*/}
+      <FadeInWhenVisible>
+        <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-blue-100 text-lg">
+                Don't just take our word for it - hear from our satisfied
+                clients
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-400" />
+                  ))}
                 </div>
-                <div className="flex items-center">
-                  <FaCheck className="text-green-500 mr-3" />
-                  <span className="text-gray-700">24/7 client support</span>
+                <p className="text-gray-700 mb-4">
+                  "Matterhorn provided exceptional legal guidance during our
+                  company merger. Their expertise and attention to detail were
+                  invaluable."
+                </p>
+                <div className="font-semibold text-gray-800">Sarah Johnson</div>
+                <div className="text-gray-600 text-sm">CEO, TechStart Inc.</div>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4">
+                  "Professional, responsive, and results-driven. They helped us
+                  navigate complex employment law issues with ease."
+                </p>
+                <div className="font-semibold text-gray-800">Michael Chen</div>
+                <div className="text-gray-600 text-sm">
+                  HR Director, Global Corp
                 </div>
               </div>
 
-              <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center">
-                Learn More <FaArrowRight className="ml-2" />
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4">
+                  "Outstanding intellectual property protection services. They
+                  secured our patents efficiently and cost-effectively."
+                </p>
+                <div className="font-semibold text-gray-800">
+                  Emily Rodriguez
+                </div>
+                <div className="text-gray-600 text-sm">
+                  Founder, Innovation Labs
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </FadeInWhenVisible>
+
+      {/* CTA Section */}
+      <FadeInWhenVisible>
+        <section className="bg-gradient-to-r from-slate-800 to-slate-900 py-16">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+              Schedule a free consultation with our legal experts and discover
+              how we can help your business thrive in today's competitive
+              landscape.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold">
+                Schedule Consultation
+              </button>
+              <button className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-gray-800 transition-all duration-300 font-semibold">
+                Call Now: (555) 123-4567
               </button>
             </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
-                Our Track Record
-              </h3>
-              <div className="grid grid-cols-2 gap-6 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-blue-700 mb-2">
-                    500+
-                  </div>
-                  <div className="text-gray-600">Cases Won</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-700 mb-2">
-                    1000+
-                  </div>
-                  <div className="text-gray-600">Happy Clients</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-700 mb-2">
-                    25+
-                  </div>
-                  <div className="text-gray-600">Years Experience</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-700 mb-2">
-                    98%
-                  </div>
-                  <div className="text-gray-600">Success Rate</div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section - Blue Background */}
-      <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-blue-100 text-lg">
-              Don't just take our word for it - hear from our satisfied clients
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Matterhorn provided exceptional legal guidance during our
-                company merger. Their expertise and attention to detail were
-                invaluable."
-              </p>
-              <div className="font-semibold text-gray-800">Sarah Johnson</div>
-              <div className="text-gray-600 text-sm">CEO, TechStart Inc.</div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Professional, responsive, and results-driven. They helped us
-                navigate complex employment law issues with ease."
-              </p>
-              <div className="font-semibold text-gray-800">Michael Chen</div>
-              <div className="text-gray-600 text-sm">
-                HR Director, Global Corp
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="flex mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4">
-                "Outstanding intellectual property protection services. They
-                secured our patents efficiently and cost-effectively."
-              </p>
-              <div className="font-semibold text-gray-800">Emily Rodriguez</div>
-              <div className="text-gray-600 text-sm">
-                Founder, Innovation Labs
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Gradient Background */}
-      <section className="bg-gradient-to-r from-slate-800 to-slate-900 py-16">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Schedule a free consultation with our legal experts and discover how
-            we can help your business thrive in today's competitive landscape.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold">
-              Schedule Consultation
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-gray-800 transition-all duration-300 font-semibold">
-              Call Now: (555) 123-4567
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </FadeInWhenVisible>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
