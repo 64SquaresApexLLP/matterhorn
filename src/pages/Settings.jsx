@@ -37,12 +37,12 @@ const themes = [
   {
     id: "dark",
     name: "Dark",
-    colors: ["bg-pink-100", "bg-pink-500", "bg-pink-900"],
+    colors: ["bg-gray-900", "bg-gray-700", "bg-gray-500"],
     vars: {
-      bg: "pink-100",
-      text: "pink-900",
-      primary: "pink-500",
-      secondary: "pink-200",
+      bg: "gray-900", // Dark background
+      text: "gray-100", // Light text for better contrast on dark background
+      primary: "purple-500", // You can choose a color that pops on dark mode
+      secondary: "gray-400", // Lighter gray for secondary elements
     },
   },
 ];
@@ -52,7 +52,7 @@ const Settings = () => {
 
   useEffect(() => {
     // const saved = setActiveTheme("tealgold");
-    const saved = localStorage.getItem("theme") || setActiveTheme('modern'); // default to tealgold
+    const saved = localStorage.getItem("theme") || setActiveTheme("modern"); // default to tealgold
     // setActiveTheme(saved);
     document.body.className = `theme-${saved}`;
   }, []);

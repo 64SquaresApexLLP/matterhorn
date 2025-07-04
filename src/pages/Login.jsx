@@ -23,6 +23,7 @@ const Login = () => {
     // Dummy check: Replace with real authentication logic
     if (email === "fpopa@matterhorn.global" && password === "password123") {
       setError(""); // Clear error
+      localStorage.setItem("selectedOrganization", organization);
       navigate("/dashboard");
     } else {
       setError("Invalid email or password.");
@@ -42,10 +43,10 @@ const Login = () => {
       {/* Login Section */}
       <div
         className="w-[75vw] relative bg-cover bg-center"
-        style={{ backgroundImage: "linear-gradient(to top, white 50px,transparent 50px), url('./bg.png')" ,
-                 
-                 
-         }}
+        style={{
+          backgroundImage:
+            "linear-gradient(to top, white 50px,transparent 50px), url('./bg.png')",
+        }}
       >
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 py-12">
           <div className="border-blue-400 border-1 bg-white rounded-xl shadow-xl p-4 w-full max-w-sm space-y-4">
@@ -62,7 +63,9 @@ const Login = () => {
 
             {/* Organization Selector */}
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Organization</label>
+              <label className="block text-sm text-gray-600 mb-1">
+                Organization
+              </label>
               <select
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
@@ -95,7 +98,9 @@ const Login = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Password</label>
+              <label className="block text-sm text-gray-600 mb-1">
+                Password
+              </label>
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
                 <span className="px-3 text-gray-500">
                   <FaLock />

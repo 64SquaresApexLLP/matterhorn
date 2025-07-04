@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaSearch, FaCog, FaUserEdit } from "react-icons/fa";
 
 const TopNav = () => {
+  const [orgName, setOrgName] = useState("");
+
+  useEffect(() => {
+    const storedOrg = localStorage.getItem("selectedOrganization");
+    setOrgName(storedOrg || "No Organization Selected");
+  }, []);
+
   return (
     <motion.div
       initial={{ y: -80, opacity: 0 }}
@@ -11,6 +18,10 @@ const TopNav = () => {
       transition={{ type: "spring", stiffness: 70 }}
       className="h-[10vh] bg-blue-50 text-[var(--secondary-600)] flex items-center justify-between px-6 shadow-lg border-b border-gray-200"
     >
+      <div className="flex items-center space-x-4 text-lg">
+        Organization: &nbsp;<span className="font-medium"> {orgName}</span>
+      </div>
+
       {/* Search Bar */}
       <div className="border border-gray-300 bg-gray-50 ml-[30vw] relative hidden md:flex items-center rounded-md overflow-hidden text-gray-800 shadow-sm w-64">
         <input

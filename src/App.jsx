@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route ,Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Layout from "./Layout";
 
 import Login from "./pages/Login";
@@ -15,6 +20,7 @@ import Settings from "./pages/Settings";
 import RefDataMgt from "./pages/RefDataMgt";
 import Home from "./pages/Home";
 import NewEntry from "./pages/NewEntry";
+import Demo from "./components/Demo";
 
 const layoutRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
@@ -29,16 +35,16 @@ const layoutRoutes = [
   { path: "/settings", element: <Settings /> },
   { path: "/reference-data-mgt", element: <RefDataMgt /> },
   { path: "/entries/new", element: <NewEntry /> },
+  { path: "/invoices/demo", element: <Demo /> },
 ];
 
 function App() {
   return (
     <Router>
       <Routes>
-       {/* Public Routes */}
-       <Route path="/" element={<Navigate to="/home" replace />} />
+        {/* Public Routes */}
+        <Route path="/" element={<Navigate to="/home" replace />} />
 
-       
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
