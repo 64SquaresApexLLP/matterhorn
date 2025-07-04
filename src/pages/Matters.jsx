@@ -9,6 +9,7 @@ import {
   FiEye,
   FiDownload
 } from 'react-icons/fi';
+import { motion } from "framer-motion";
 
 const Matters = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -160,8 +161,16 @@ const Matters = () => {
   );
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+      duration: 0.5,
+      ease: "easeInOut"
+    }}
+    >
     <div className="min-h-screen bg-blue-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Matters</h1>
@@ -353,6 +362,7 @@ const Matters = () => {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 
