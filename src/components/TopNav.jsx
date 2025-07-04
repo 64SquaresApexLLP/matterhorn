@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
 import { FaSearch, FaCog, FaUserEdit } from "react-icons/fa";
 
 const TopNav = () => {
@@ -12,10 +11,7 @@ const TopNav = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 70 }}
+    <div
       className="h-[10vh] bg-blue-50 text-[var(--secondary-600)] flex items-center justify-between px-6 shadow-lg border-b border-gray-200"
     >
       <div className="flex items-center space-x-4 text-lg">
@@ -52,7 +48,7 @@ const TopNav = () => {
           <span className="hidden sm:inline">Settings</span>
         </NavLink>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

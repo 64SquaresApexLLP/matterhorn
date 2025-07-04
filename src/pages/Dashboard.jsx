@@ -16,6 +16,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
   const [animationTrigger, setAnimationTrigger] = useState(false);
@@ -165,6 +166,14 @@ const Dashboard = () => {
   };
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+      duration: 0.5,
+      ease: "easeInOut"
+    }}
+    >
     <div className="min-h-screen bg-blue-50 p-6">
       <style jsx>{`
         @keyframes slideInUp {
@@ -440,76 +449,44 @@ const Dashboard = () => {
               </ResponsiveContainer>
             </div>
           </div>
-
-          {/* Time View & Invoice Status */}
           <div className="space-y-6">
-            {/* Revenue Trend */}
-            {/* <div className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`} style={{ animationDelay: "0.3s" }}>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold text-slate-800">Revenue Trend</h3>
-                <span className="text-blue-500 text-sm">2024 ↓</span>
-              </div>
-              <div className="h-40">
+            <div
+              className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`}
+              style={{ animationDelay: "0.4s" }}
+            >
+              <h3 className="text-lg font-semibold text-slate-800 mb-4">Invoice Status</h3>
+              <div className="h-100">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={monthlyProgress}>
-                    <Line 
-                      type="monotone" 
-                      dataKey="value" 
-                      stroke="#EC4899" 
-                      strokeWidth={2}
-                      strokeDasharray="3 3"
-                      dot={{ fill: "#EC4899", strokeWidth: 2, r: 3 }}
-                    />
-                    <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
-                    <Tooltip formatter={(value) => [`$${value}K`, 'Revenue']} />
-                  </LineChart>
+                  <PieChart>
+                    <Pie
+                      data={invoiceStatus}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={100} 
+                      outerRadius={150}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {invoiceStatus.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip formatter={(value,name) => [`${value}%`, `${name}`]} />
+                  </PieChart>
                 </ResponsiveContainer>
-              </div> */
-            /* </div> */}
+              </div>
 
-            {/* Invoice Status Distribution */}
-           <div
-  className={`glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-scale-in" : ""}`}
-  style={{ animationDelay: "0.4s" }}
->
-  <h3 className="text-lg font-semibold text-slate-800 mb-4">Invoice Status</h3>
-
-  {/* Increase height here */}
-  <div className="h-100">
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={invoiceStatus}
-          cx="50%"
-          cy="50%"
-          innerRadius={100} 
-          outerRadius={150}
-          paddingAngle={5}
-          dataKey="value"
-        >
-          {invoiceStatus.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.color} />
-          ))}
-        </Pie>
-        <Tooltip formatter={(value,name) => [`${value}%`, `${name}`]} />
-      </PieChart>
-    </ResponsiveContainer>
-  </div>
-
-  <div className="grid grid-cols-2 gap-2 mt-4">
-    {invoiceStatus.map((status, index) => (
-      <div key={index} className="flex items-center space-x-2">
-        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: status.color }}></div>
-        <span className="text-xs text-slate-600">{status.name}</span>
-      </div>
-    ))}
-  </div>
-</div>
-
+              <div className="grid grid-cols-2 gap-2 mt-4">
+                {invoiceStatus.map((status, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: status.color }}></div>
+                <span className="text-xs text-slate-600">{status.name}</span>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Fixed Bar Chart Row - Invoice Status Breakdown */}
+      </div>
+    </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className={`lg:col-span-2 glass-card p-6 rounded-2xl card-hover ${animationTrigger ? "animate-slide-up" : ""}`} style={{ animationDelay: "0.4s" }}>
             <div className="flex justify-between items-center mb-6">
@@ -730,6 +707,7 @@ const Dashboard = () => {
 
       </div> 
     </div>
+    </motion.div>
   );
 };
 

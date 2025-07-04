@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const RefDataMgt = () => {
   const [phaseTask, setPhaseTask] = useState("PA-100 Assessment");
   const [activity, setActivity] = useState("A-101 Plan");
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+      duration: 0.5,
+      ease: "easeInOut"
+    }}
+    >
     <div className="h-screen bg-blue-50 flex flex-col items-center justify-start py-10 px-4">
       {/* Title */}
       <h1 className="text-2xl font-bold text-gray-900 mb-10">
@@ -83,6 +92,7 @@ const RefDataMgt = () => {
         </form>
       </div>
     </div>
+    </motion.div>
   );
 };
 

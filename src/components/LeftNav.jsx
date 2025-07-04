@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
   FaUser,
   FaUsers,
@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa";
 import { MdDataArray } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
 
 const menuItems = [
   { name: "Dashboard", icon: <FaChartBar />, path: "dashboard" },
@@ -36,6 +35,33 @@ export default function Nav() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Update active index based on current location
+  useEffect(() => {
+    const currentPath = location.pathname.replace('/', '');
+    
+    // Handle special cases
+    if (currentPath === 'entries/new') {
+      setActiveIndex(3); // Entries index
+      return;
+    }
+    
+    const foundIndex = menuItems.findIndex(item => {
+      if (item.path === currentPath) {
+        return true;
+      }
+      // Handle nested routes
+      if (currentPath.startsWith(item.path)) {
+        return true;
+      }
+      return false;
+    });
+    
+    if (foundIndex !== -1) {
+      setActiveIndex(foundIndex);
+    }
+  }, [location.pathname]);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
@@ -53,14 +79,7 @@ export default function Nav() {
       <div>
         <NavLink to="/" className="flex items-center">
           <div className="flex items-center">
-            <motion.div
-              key={isOpen ? "logo-expand" : "logo-collapse"}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex items-center"
-            >
+            <div className="flex items-center">
               {isOpen ? (
                 <img
                   src="./logo.png"
@@ -74,13 +93,13 @@ export default function Nav() {
                   className="m-2 h-[8vh] pl-1"
                 />
               )}
-            </motion.div>
+            </div>
           </div>
         </NavLink>
 
         <button
           onClick={toggleSidebar}
-          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-md"
+          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 active:scale-90 transition-transform"
         >
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </button>
@@ -88,11 +107,10 @@ export default function Nav() {
         <nav className="mt-4 relative font-medium">
           {/* Active indicator */}
           <div
-            className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full transition-all duration-300 ease-in-out"
+            className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full transition-all duration-300"
             style={{ 
-              height: "45px", 
-              top: `${activeIndex * 55 + 6}px`,
-              transform: "translateY(0)"
+              height: "45px",
+              top: `${activeIndex * 55 + 6}px`
             }}
           />
           
@@ -108,9 +126,17 @@ export default function Nav() {
                 } ${!isOpen ? "justify-center" : ""}`}
                 onClick={() => handleMenuClick(idx)}
               >
-                <span className="text-lg flex-shrink-0">{item.icon}</span>
+                <span 
+                  className={`text-lg flex-shrink-0 ${
+                    activeIndex === idx ? "text-yellow-300 scale-110" : ""
+                  } transition-all duration-200`}
+                >
+                  {item.icon}
+                </span>
                 {isOpen && (
-                  <span className="text-sm whitespace-nowrap">{item.name}</span>
+                  <span className="text-sm whitespace-nowrap">
+                    {item.name}
+                  </span>
                 )}
               </div>
             ))}
@@ -123,7 +149,7 @@ export default function Nav() {
         <div className="p-4 border-t border-[var(--primary)]/40">
           <NavLink to="/edit-profile">
             <div
-              className={`flex items-center gap-2 cursor-pointer hover:bg-[var(--primary)]/20 rounded-lg ${
+              className={`flex items-center gap-2 cursor-pointer hover:bg-[var(--primary)]/20 rounded-lg p-2 transition-all duration-200 ${
                 !isOpen ? "justify-center" : "justify-between"
               }`}
               onClick={isOpen ? toggleUserMenu : undefined}
@@ -132,7 +158,7 @@ export default function Nav() {
                 <img
                   src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?q=80&w=1170"
                   alt="user"
-                  className="rounded-full w-10 h-10 object-cover flex-shrink-0"
+                  className="rounded-full w-10 h-10 object-cover flex-shrink-0 hover:scale-110 transition-transform"
                 />
                 {isOpen && (
                   <div>
@@ -147,14 +173,18 @@ export default function Nav() {
           <button
             className={`cursor-pointer w-full mt-4 flex items-center ${
               isOpen ? "justify-start gap-3 px-2" : "justify-center"
-            } py-2 text-left bg-yellow-600 hover:bg-yellow-700 rounded-lg text-white`}
+            } py-2 text-left bg-yellow-600 hover:bg-yellow-700 rounded-lg text-white transition-all duration-200`}
             onClick={() => {
               console.log("Logout clicked");
               navigate("/");
             }}
           >
             <FiLogOut className="text-lg" />
-            {isOpen && <span className="text-sm">Log out</span>}
+            {isOpen && (
+              <span className="text-sm">
+                Log out
+              </span>
+            )}
           </button>
         </div>
       </div>

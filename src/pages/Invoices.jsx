@@ -6,6 +6,7 @@ import {
   FiChevronDown,
   FiFilter,
 } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const Invoices = () => {
   const [selectedInvoices, setSelectedInvoices] = useState([]);
@@ -81,6 +82,14 @@ const Invoices = () => {
   };
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+      duration: 0.5,
+      ease: "easeInOut"
+    }}
+    >
     <div className="min-h-screen bg-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -285,6 +294,7 @@ const Invoices = () => {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,6 +32,14 @@ const Login = () => {
   };
 
   return (
+    <motion.div
+      initial={{ opacity: 0, x: -50 }} 
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+      duration: 0.5,
+      ease: "easeInOut"
+    }}
+    >
     <div className="min-h-screen flex">
       {/* Sidebar */}
       <div className="w-[25vw] bg-gradient-to-r from-[#0E44A4] to-[#1167CC] flex flex-col items-center justify-center p-8">
@@ -135,6 +144,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 
