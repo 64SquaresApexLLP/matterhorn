@@ -90,6 +90,8 @@ function HomePage() {
 
             {/* Hero Section */}
             <section className="relative flex flex-col items-start justify-center px-4 md:px-8 pt-24 pb-12 max-w-7xl mx-auto text-left min-h-1/2 overflow-hidden">
+                
+                
                 {/* Background Images - Positioned Left & Right */}
                 <div className="absolute inset-0 -z-10">
                     {/* Graph on Left */}
@@ -126,10 +128,11 @@ function HomePage() {
             </section>
 
 
-            <FadeInWhenVisible>
+            
 
                 {/* Services Section*/}
                 <section className="bg-slate-900 text-white py-16">
+                <FadeInWhenVisible>
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Legal Services</h2>
@@ -164,15 +167,17 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
+                    </FadeInWhenVisible>
                 </section>
 
-            </FadeInWhenVisible>
+            
 
 
 
             {/* About Section */}
-            <FadeInWhenVisible delay={0.1}>
+            
                 <section className="bg-gray-100 py-16">
+                <FadeInWhenVisible delay={0.1}>
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="grid lg:grid-cols-2 gap-12 items-center">
                             <div>
@@ -232,12 +237,15 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
+
+                    </FadeInWhenVisible>
                 </section>
-            </FadeInWhenVisible>
+            
 
             {/* Testimonials Section*/}
-            <FadeInWhenVisible >
+            
                 <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
+                <FadeInWhenVisible >
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Our Clients Say</h2>
@@ -290,12 +298,14 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
+                    </FadeInWhenVisible>
                 </section>
-            </FadeInWhenVisible>
+            
 
             {/* CTA Section */}
-            <FadeInWhenVisible>
+            
                 <section className="bg-gradient-to-r from-slate-800 to-slate-900 py-16">
+                <FadeInWhenVisible>
                     <div className="max-w-4xl mx-auto text-center px-4">
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                             Ready to Get Started?
@@ -313,8 +323,9 @@ function HomePage() {
                             </button>
                         </div>
                     </div>
+                    </FadeInWhenVisible>
                 </section>
-            </FadeInWhenVisible>
+            
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
