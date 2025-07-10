@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-
+import { motion } from "framer-motion";
 // Icon components (replacing react-icons with inline SVGs)
 const ChevronDown = ({ className = "h-4 w-4" }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -250,6 +250,14 @@ const Matters = () => {
   );
 
   return (
+    <motion.div
+              initial={{ opacity: 0, y: 50 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+              duration: 0.5,
+              ease: "easeInOut"
+            }}
+    >
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
@@ -555,6 +563,7 @@ const Matters = () => {
         }
       `}</style>
     </div>
+    </motion.div>
   );
 };
 
