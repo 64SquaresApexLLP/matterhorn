@@ -1,9 +1,8 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import { Calendar, X } from "lucide-react";
-
+import { Calendar, X, ArrowLeft, Save, Plus } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 const TimekeeperForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     client: "014 - General Dynamics",
     timekeeper: "",
@@ -22,6 +21,8 @@ const TimekeeperForm = () => {
     matter: "",
     date: "7/1/2025",
   });
+
+  const [errors, setErrors] = useState({});
 
   const phaseTaskActivityPairs = {
     "PA100 - Assessment, Development, and Administration": {
@@ -60,6 +61,7 @@ const TimekeeperForm = () => {
     return phaseTaskActivityPairs[phaseTask] || {};
   };
 
+  // Auto-generate reference ID when phase task and activity change
   useEffect(() => {
     if (formData.phaseTask && formData.activity) {
       const activities = getActivitiesForPhaseTask(formData.phaseTask);
@@ -70,6 +72,14 @@ const TimekeeperForm = () => {
     }
   }, [formData.phaseTask, formData.activity]);
 
+  // Auto-calculate total when rate or hours change
+  useEffect(() => {
+    const rate = parseFloat(formData.rate) || 0;
+    const hoursBilled = parseFloat(formData.hoursBilled) || 0;
+    const total = (rate * hoursBilled).toFixed(2);
+    setFormData((prev) => ({ ...prev, total }));
+  }, [formData.rate, formData.hoursBilled]);
+
   const handleInputChange = (field, value) => {
     setFormData((prev) => {
       const newData = { ...prev, [field]: value };
@@ -78,6 +88,94 @@ const TimekeeperForm = () => {
       }
       return newData;
     });
+    
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: null }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.client) newErrors.client = "Client is required";
+    if (!formData.matter) newErrors.matter = "Matter is required";
+    if (!formData.timekeeper) newErrors.timekeeper = "Timekeeper is required";
+    if (!formData.date) newErrors.date = "Date is required";
+    if (!formData.phaseTask) newErrors.phaseTask = "Phase Task is required";
+    if (!formData.activity) newErrors.activity = "Activity is required";
+    if (!formData.type) newErrors.type = "Type is required";
+    if (!formData.hoursWorked || parseFloat(formData.hoursWorked) <= 0) {
+      newErrors.hoursWorked = "Hours Worked must be greater than 0";
+    }
+    if (!formData.hoursBilled || parseFloat(formData.hoursBilled) <= 0) {
+      newErrors.hoursBilled = "Hours Billed must be greater than 0";
+    }
+    if (!formData.currency) newErrors.currency = "Currency is required";
+    if (!formData.rate || parseFloat(formData.rate) <= 0) {
+      newErrors.rate = "Rate must be greater than 0";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  const handleCancel = () => {
+    const hasChanges = Object.keys(formData).some(key => 
+      formData[key] !== (key === "client" ? "014 - General Dynamics" : 
+                         key === "type" ? "Fee" : 
+                         key === "hoursWorked" || key === "hoursBilled" ? "1" :
+                         key === "rate" || key === "total" ? "0" :
+                         key === "billCode" ? "Billable" :
+                         key === "status" ? "Invoice" :
+                         key === "date" ? "7/1/2025" : "")
+    );
+    
+    if (hasChanges) {
+      if (confirm("Are you sure you want to cancel? All unsaved changes will be lost.")) {
+        handleBack();
+      }
+    } else {
+      handleBack();
+    }
+  };
+
+  const handleSave = () => {
+    if (validateForm()) {
+      console.log("Saving form data:", formData);
+      alert("Form saved successfully!");
+    }
+  };
+
+  const handleSaveAndNew = () => {
+    if (validateForm()) {
+      console.log("Saving form data:", formData);
+      // Reset form for new entry
+      setFormData({
+        client: "014 - General Dynamics",
+        timekeeper: "",
+        type: "Fee",
+        hoursWorked: "1",
+        hoursBilled: "1",
+        currency: "",
+        rate: "0",
+        total: "0",
+        phaseTask: "",
+        activity: "",
+        referenceId: "",
+        narrative: "",
+        billCode: "Billable",
+        status: "Invoice",
+        matter: "",
+        date: "7/1/2025",
+      });
+      setErrors({});
+      alert("Form saved successfully! Ready for new entry.");
+    }
   };
 
   const currentActivities = getActivitiesForPhaseTask(formData.phaseTask);
@@ -88,14 +186,32 @@ const TimekeeperForm = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-semibold">Timekeeper Entry</h1>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800">
+          <button 
+            onClick={handleBack}
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors"
+          >
+            <ArrowLeft size={16} />
+            Back
+          </button>
+          <button 
+            onClick={handleCancel}
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded transition-colors"
+          >
             <X size={16} />
             Cancel
           </button>
-          <button className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+          <button 
+            onClick={handleSave}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors"
+          >
+            <Save size={16} />
             Save
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          <button 
+            onClick={handleSaveAndNew}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            <Plus size={16} />
             Save & New
           </button>
         </div>
@@ -109,27 +225,26 @@ const TimekeeperForm = () => {
               Client<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.client ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.client}
               onChange={(e) => handleInputChange("client", e.target.value)}
             >
-              <option value="014 - General Dynamics">
-                014 - General Dynamics
-              </option>
-              <option value="015 - Boeing Corporation">
-                015 - Boeing Corporation
-              </option>
-              <option value="016 - Lockheed Martin">
-                016 - Lockheed Martin
-              </option>
+              <option value="014 - General Dynamics">014 - General Dynamics</option>
+              <option value="015 - Boeing Corporation">015 - Boeing Corporation</option>
+              <option value="016 - Lockheed Martin">016 - Lockheed Martin</option>
             </select>
+            {errors.client && <p className="text-red-500 text-sm mt-1">{errors.client}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Matter<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.matter ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.matter}
               onChange={(e) => handleInputChange("matter", e.target.value)}
             >
@@ -138,6 +253,7 @@ const TimekeeperForm = () => {
               <option value="Compliance Review">Compliance Review</option>
               <option value="Litigation Support">Litigation Support</option>
             </select>
+            {errors.matter && <p className="text-red-500 text-sm mt-1">{errors.matter}</p>}
           </div>
         </div>
 
@@ -148,7 +264,9 @@ const TimekeeperForm = () => {
               Timekeeper<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.timekeeper ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.timekeeper}
               onChange={(e) => handleInputChange("timekeeper", e.target.value)}
             >
@@ -157,6 +275,7 @@ const TimekeeperForm = () => {
               <option value="Sarah Johnson">Sarah Johnson</option>
               <option value="Michael Brown">Michael Brown</option>
             </select>
+            {errors.timekeeper && <p className="text-red-500 text-sm mt-1">{errors.timekeeper}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -165,7 +284,9 @@ const TimekeeperForm = () => {
             <div className="relative">
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+                className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10 ${
+                  errors.date ? 'border-red-500' : 'border-gray-300'
+                }`}
                 value={formData.date}
                 onChange={(e) => handleInputChange("date", e.target.value)}
                 placeholder="MM/DD/YYYY"
@@ -175,6 +296,7 @@ const TimekeeperForm = () => {
                 size={20}
               />
             </div>
+            {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
           </div>
         </div>
 
@@ -185,7 +307,9 @@ const TimekeeperForm = () => {
               Phase Task<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.phaseTask ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.phaseTask}
               onChange={(e) => handleInputChange("phaseTask", e.target.value)}
             >
@@ -196,13 +320,16 @@ const TimekeeperForm = () => {
                 </option>
               ))}
             </select>
+            {errors.phaseTask && <p className="text-red-500 text-sm mt-1">{errors.phaseTask}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Activity<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.activity ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.activity}
               onChange={(e) => handleInputChange("activity", e.target.value)}
               disabled={!formData.phaseTask}
@@ -214,6 +341,7 @@ const TimekeeperForm = () => {
                 </option>
               ))}
             </select>
+            {errors.activity && <p className="text-red-500 text-sm mt-1">{errors.activity}</p>}
           </div>
         </div>
 
@@ -238,13 +366,16 @@ const TimekeeperForm = () => {
               Type<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.type ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.type}
               onChange={(e) => handleInputChange("type", e.target.value)}
             >
               <option value="Fee">Fee</option>
               <option value="Expense">Expense</option>
             </select>
+            {errors.type && <p className="text-red-500 text-sm mt-1">{errors.type}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -252,10 +383,15 @@ const TimekeeperForm = () => {
             </label>
             <input
               type="number"
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              step="0.25"
+              min="0"
+              className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.hoursWorked ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.hoursWorked}
               onChange={(e) => handleInputChange("hoursWorked", e.target.value)}
             />
+            {errors.hoursWorked && <p className="text-red-500 text-sm mt-1">{errors.hoursWorked}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -263,17 +399,24 @@ const TimekeeperForm = () => {
             </label>
             <input
               type="number"
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              step="0.25"
+              min="0"
+              className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.hoursBilled ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.hoursBilled}
               onChange={(e) => handleInputChange("hoursBilled", e.target.value)}
             />
+            {errors.hoursBilled && <p className="text-red-500 text-sm mt-1">{errors.hoursBilled}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Currency<span className="text-red-500">*</span>
             </label>
             <select
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.currency ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.currency}
               onChange={(e) => handleInputChange("currency", e.target.value)}
             >
@@ -282,6 +425,7 @@ const TimekeeperForm = () => {
               <option value="EUR">EUR</option>
               <option value="GBP">GBP</option>
             </select>
+            {errors.currency && <p className="text-red-500 text-sm mt-1">{errors.currency}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -289,10 +433,15 @@ const TimekeeperForm = () => {
             </label>
             <input
               type="number"
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              step="0.01"
+              min="0"
+              className={`w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                errors.rate ? 'border-red-500' : 'border-gray-300'
+              }`}
               value={formData.rate}
               onChange={(e) => handleInputChange("rate", e.target.value)}
             />
+            {errors.rate && <p className="text-red-500 text-sm mt-1">{errors.rate}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -300,7 +449,7 @@ const TimekeeperForm = () => {
             </label>
             <input
               type="number"
-              className="w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+              className="w-full p-3 border border-gray-300 rounded-md bg-gray-100 text-gray-600"
               value={formData.total}
               readOnly
             />
