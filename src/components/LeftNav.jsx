@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
   FaUser,
@@ -10,15 +10,31 @@ import {
   FaChartBar,
   FaChevronLeft,
   FaChevronRight,
+  FaDatabase,
 } from "react-icons/fa";
 import { MdDataArray } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 
 const menuItems = [
   { name: "Dashboard", icon: <FaChartBar />, path: "dashboard" },
-  { name: "Clients", icon: <FaUser />, path: "clients" },
-  { name: "Matters", icon: <FaFolderOpen />, path: "matters" },
-  { name: "Entries", icon: <FaClock />, path: "entries" },
+  {
+    name: "Clients & Users",
+    icon: <FaUser />,
+    path: "clients-users",
+    dropdown: [
+      { name: "Clients", icon: <FaUser />, path: "clients" },
+      { name: "Users", icon: <FaUsers />, path: "users" },
+    ],
+  },
+  {
+    name: "Data",
+    icon: <FaDatabase />,
+    path: "data",
+    dropdown: [
+      { name: "Matters", icon: <FaFolderOpen />, path: "matters" },
+      { name: "Entries", icon: <FaClock />, path: "entries" },
+    ],
+  },
   {
     name: "Ref. Data Management",
     icon: <MdDataArray />,
@@ -27,16 +43,16 @@ const menuItems = [
   { name: "Invoices", icon: <FaFileInvoice />, path: "invoices" },
   { name: "Payments", icon: <FaMoneyCheckAlt />, path: "payments" },
   { name: "Reports", icon: <FaChartBar />, path: "reports" },
-  { name: "Users", icon: <FaUsers />, path: "users" },
 ];
 
 export default function Nav() {
-  // const [isOpen, setIsOpen] = useState(true);
   const [isOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const dropdownRefs = useRef({});
 
   // Update active index based on current location
   useEffect(() => {
@@ -44,7 +60,7 @@ export default function Nav() {
 
     // Handle special cases
     if (currentPath === "entries/new") {
-      setActiveIndex(3); // Entries index
+      setActiveIndex(2); // Data index (contains entries)
       return;
     }
 
@@ -56,6 +72,13 @@ export default function Nav() {
       if (currentPath.startsWith(item.path)) {
         return true;
       }
+      // Check dropdown items
+      if (item.dropdown) {
+        return item.dropdown.some(
+          (subItem) =>
+            currentPath === subItem.path || currentPath.startsWith(subItem.path)
+        );
+      }
       return false;
     });
 
@@ -64,12 +87,45 @@ export default function Nav() {
     }
   }, [location.pathname]);
 
-  // const toggleSidebar = () => setIsOpen(!isOpen);
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        openDropdown !== null &&
+        dropdownRefs.current[openDropdown] &&
+        !dropdownRefs.current[openDropdown].contains(event.target)
+      ) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
+
   const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
 
   const handleMenuClick = (index) => {
-    setActiveIndex(index);
-    navigate(`/${menuItems[index].path}`);
+    const item = menuItems[index];
+
+    if (item.dropdown) {
+      // Toggle dropdown
+      setOpenDropdown(openDropdown === index ? null : index);
+      setActiveIndex(index);
+    } else {
+      // Navigate directly
+      setActiveIndex(index);
+      navigate(`/${item.path}`);
+      setOpenDropdown(null);
+    }
+  };
+
+  const handleDropdownItemClick = (parentIndex, subItem) => {
+    setActiveIndex(parentIndex);
+    navigate(`/${subItem.path}`);
+    setOpenDropdown(null);
   };
 
   return (
@@ -98,13 +154,6 @@ export default function Nav() {
           </div>
         </NavLink>
 
-        {/* <button
-          onClick={toggleSidebar}
-          className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 active:scale-90 transition-transform"
-        >
-          {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
-        </button> */}
-
         <nav className="mt-4 relative font-medium">
           {/* Active indicator */}
           <div
@@ -118,7 +167,11 @@ export default function Nav() {
           {/* Menu items */}
           <div className="flex flex-col gap-2">
             {menuItems.map((item, idx) => (
-              <div key={idx} className="group relative">
+              <div
+                key={idx}
+                className="group relative"
+                ref={(el) => (dropdownRefs.current[idx] = el)}
+              >
                 <div
                   className={`flex items-center gap-4 px-4 h-12 cursor-pointer transition-colors duration-200
       ${
@@ -142,11 +195,46 @@ export default function Nav() {
                   )}
                 </div>
 
+                {/* Dropdown menu */}
+                {item.dropdown && openDropdown === idx && (
+                  <div className="absolute left-full top-0 ml-1 bg-gradient-to-b from-[var(--secondary-800)] to-[var(--secondary-700)] border border-[var(--primary)]/20 rounded-lg shadow-lg z-30 min-w-[180px]">
+                    {item.dropdown.map((subItem, subIdx) => (
+                      <div
+                        key={subIdx}
+                        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[var(--primary)]/20 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                        onClick={() => handleDropdownItemClick(idx, subItem)}
+                      >
+                        <span className="text-base">{subItem.icon}</span>
+                        <span className="text-sm">{subItem.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Tooltip when collapsed */}
-                {!isOpen && (
+                {!isOpen && !item.dropdown && (
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-gray-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity z-20 whitespace-nowrap shadow-md">
                     {item.name}
                   </span>
+                )}
+
+                {/* Dropdown tooltip when collapsed */}
+                {!isOpen && item.dropdown && (
+                  <div className="absolute left-full top-0 ml-1 bg-gray-700 rounded-lg shadow-lg z-30 min-w-[140px] opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="px-2 py-1 text-xs text-white font-medium border-b border-gray-600">
+                      {item.name}
+                    </div>
+                    {item.dropdown.map((subItem, subIdx) => (
+                      <div
+                        key={subIdx}
+                        className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-600 transition-colors duration-200 text-white text-xs last:rounded-b-lg"
+                        onClick={() => handleDropdownItemClick(idx, subItem)}
+                      >
+                        <span className="text-xs">{subItem.icon}</span>
+                        <span>{subItem.name}</span>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             ))}
