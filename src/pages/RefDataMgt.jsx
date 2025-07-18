@@ -347,7 +347,7 @@ const RefDataMgt = () => {
         className="opacity-0 animate-fade-in"
         style={{ animationDelay: "0s", animationFillMode: "forwards" }}
       >
-        <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">
           Reference Data Management
         </h1>
 
