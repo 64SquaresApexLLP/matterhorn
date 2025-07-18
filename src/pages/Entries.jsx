@@ -248,7 +248,7 @@ const Entries = () => {
       className="min-h-screen bg-blue-50"
     >
       <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-        <div className="max-w-full mx-auto">
+        <div className="max-w-full mx-auto ml-30">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
             <div>

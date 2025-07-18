@@ -138,7 +138,7 @@ const Clients = () => {
         }}
     >
     <div className="min-h-screen bg-blue-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-full mx-auto ml-30">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Clients</h1>
