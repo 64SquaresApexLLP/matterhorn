@@ -15,7 +15,7 @@ const TopNav = () => {
       className="h-[10vh] bg-blue-50 text-[var(--secondary-600)] flex items-center justify-between px-6 shadow-lg border-b border-gray-200"
     >
       <div className="flex items-center space-x-4 text-lg">
-        Organization: &nbsp;<span className="font-medium"> {orgName}</span>
+        {/* Organization: &nbsp;<span className="font-medium"> {orgName}</span> */}
       </div>
 
       {/* Search Bar */}

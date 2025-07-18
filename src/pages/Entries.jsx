@@ -11,6 +11,7 @@ import {
   FiCalendar,
 } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const Entries = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +23,7 @@ const Entries = () => {
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [sortField, setSortField] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
-
+  const navigate = useNavigate();
   // Sample data based on the entries table
   const entriesData = [
     {
@@ -233,7 +234,7 @@ const Entries = () => {
   };
 
   const handleClick = () => {
-    console.log("Navigate to /entries/new");
+    navigate("/entries/new");
   };
 
   return (

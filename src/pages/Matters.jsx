@@ -1,15 +1,54 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  FiPlus, 
-  FiChevronDown, 
-  FiChevronLeft, 
-  FiChevronRight, 
-  FiSearch,
-  FiFilter,
-  FiEye,
-  FiDownload,
-  FiMoreVertical
-} from 'react-icons/fi';
+import { motion } from "framer-motion";
+// Icon components (replacing react-icons with inline SVGs)
+const ChevronDown = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
+const ChevronLeft = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  </svg>
+);
+
+const ChevronRight = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+);
+
+const Plus = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+  </svg>
+);
+
+const Search = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  </svg>
+);
+
+const Filter = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+  </svg>
+);
+
+const Eye = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+  </svg>
+);
+
+const Download = ({ className = "h-4 w-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  </svg>
+);
 
 const Matters = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +59,7 @@ const Matters = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-  // Sample data based on the patent table
+  // Sample data
   const mattersData = [
     {
       number: '0003US',
@@ -91,6 +130,20 @@ const Matters = () => {
       name: 'SYSTEMS AND METHODS FOR PROVIDING EFFICIENT BANDWIDTH UTILIZATION IN PACKET SWITCHED NETWORKS',
       client: '014A - General Dynamics - Mission Systems',
       type: 'PATENT'
+    },
+    {
+      number: '0400US',
+      applicationNumber: '13/234,567',
+      name: 'ADVANCED WIRELESS COMMUNICATION PROTOCOLS FOR ENHANCED SECURITY',
+      client: '014A - General Dynamics - Mission Systems',
+      type: 'PATENT'
+    },
+    {
+      number: '0401US',
+      applicationNumber: '13/345,678',
+      name: 'MACHINE LEARNING ALGORITHMS FOR NETWORK OPTIMIZATION',
+      client: '014A - General Dynamics - Mission Systems',
+      type: 'PATENT'
     }
   ];
 
@@ -143,15 +196,15 @@ const Matters = () => {
     }
   };
 
-  const SortableHeader = ({ field, children, className = "" }) => (
+  const SortableHeader = ({ field, children, className = "", minWidth = "" }) => (
     <th 
-      className={`px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 select-none ${className}`}
+      className={`px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 select-none transition-colors ${className} ${minWidth}`}
       onClick={() => handleSort(field)}
     >
       <div className="flex items-center space-x-1">
-        <span>{children}</span>
-        <FiChevronDown 
-          className={`h-4 w-4 transform transition-transform ${
+        <span className="whitespace-nowrap">{children}</span>
+        <ChevronDown 
+          className={`h-3 w-3 transform transition-transform flex-shrink-0 ${
             sortField === field 
               ? sortDirection === 'asc' ? 'rotate-180' : 'rotate-0'
               : 'opacity-50'
@@ -163,102 +216,113 @@ const Matters = () => {
 
   // Mobile Card Component
   const MobileCard = ({ matter }) => (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm">
-      <div className="flex justify-between items-start mb-2">
-        <div className="flex-1">
-          <h3 className="font-medium text-gray-900 text-sm mb-1">{matter.number}</h3>
+    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex justify-between items-start mb-3">
+        <div className="flex-1 min-w-0">
+          <h3 className="font-semibold text-gray-900 text-sm mb-1">{matter.number}</h3>
           <p className="text-xs text-gray-500 mb-2">{matter.applicationNumber}</p>
         </div>
-        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800 ml-2 flex-shrink-0">
           {matter.type}
         </span>
       </div>
       
-      <div className="mb-3">
-        <p className="text-sm text-gray-900 font-medium mb-1">{matter.name}</p>
-        <p className="text-xs text-gray-500">{matter.client}</p>
+      <div className="mb-4">
+        <p className="text-sm text-gray-900 font-medium mb-2 line-clamp-2">{matter.name}</p>
+        <p className="text-xs text-gray-500 truncate">{matter.client}</p>
       </div>
       
       <div className="flex justify-end space-x-2">
         <button 
-          className="text-blue-600 hover:text-blue-900 p-2 rounded hover:bg-blue-50 transition-colors"
+          className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
           title="View Details"
         >
-          <FiEye className="h-4 w-4" />
+          <Eye className="h-4 w-4" />
         </button>
         <button 
-          className="text-gray-600 hover:text-gray-900 p-2 rounded hover:bg-gray-50 transition-colors"
+          className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-50 transition-colors"
           title="Download"
         >
-          <FiDownload className="h-4 w-4" />
+          <Download className="h-4 w-4" />
         </button>
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-blue-50 p-3 sm:p-6">
-      <div className="container mx-auto px-2 sm:px-4">
+    <motion.div
+              initial={{ opacity: 0, y: 50 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+              duration: 0.5,
+              ease: "easeInOut"
+            }}
+    >
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Matters</h1>
-          <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors">
-            <FiPlus className="h-5 w-5" />
-            <span>New Matter</span>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <div>
+            <h1 className="text-2xl lg:text-2xl font-semibold text-gray-900 mb-1">Matters</h1>
+            <p className="text-sm text-gray-600">Manage your intellectual property matters</p>
+          </div>
+          <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-5 py-2 rounded-lg flex items-center justify-center space-x-2 transition-all transform hover:scale-105 shadow-lg">
+            <Plus className="h-4 w-4" />
+            <span className="font-sm">New Matter</span>
           </button>
         </div>
 
         {/* Mobile Filter Toggle */}
-        <div className="xl:hidden mb-4">
+        <div className="lg:hidden mb-4">
           <button
             onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2 flex items-center justify-between text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
           >
             <span className="flex items-center space-x-2">
-              <FiFilter className="h-4 w-4" />
+              <Filter className="h-4 w-4" />
               <span>Filters & Search</span>
             </span>
-            <FiChevronDown className={`h-4 w-4 transform transition-transform ${showMobileFilters ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 transform transition-transform ${showMobileFilters ? 'rotate-180' : ''}`} />
           </button>
         </div>
 
         {/* Filters and Search */}
-        <div className={`bg-white rounded-lg shadow-sm border border-gray-200 p-4 sm:p-6 mb-4 sm:mb-6 ${showMobileFilters ? 'block' : 'hidden xl:block'}`}>
+        <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-4 lg:p-6 mb-6 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
           <div className="flex flex-col gap-4">
             {/* Search */}
             <div className="relative">
-              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
-                placeholder="Search matters..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                placeholder="Search matters by name, number, or application..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
 
             {/* Filters Row */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
               {/* Type Filter */}
-              <div className="flex-1 sm:flex-none relative">
+              <div className="flex-1 sm:flex-none relative min-w-0 sm:min-w-32">
                 <select
-                  className="w-full appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  className="w-full appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
                   value={typeFilter}
                   onChange={(e) => setTypeFilter(e.target.value)}
                 >
                   <option value="">All Types</option>
-                  <option value="PATENT">PATENT</option>
-                  <option value="TRADEMARK">TRADEMARK</option>
-                  <option value="COPYRIGHT">COPYRIGHT</option>
+                  <option value="PATENT">Patent</option>
+                  <option value="TRADEMARK">Trademark</option>
+                  <option value="COPYRIGHT">Copyright</option>
                 </select>
-                <FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
               </div>
 
               {/* Items per page */}
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600 whitespace-nowrap">Show:</span>
+              <div className="flex items-center space-x-3">
+                <span className="text-sm text-gray-600 whitespace-nowrap">Items per page:</span>
                 <select
-                  className="border border-gray-300 rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   value={itemsPerPage}
                   onChange={(e) => {
                     setItemsPerPage(Number(e.target.value));
@@ -268,177 +332,238 @@ const Matters = () => {
                   <option value={10}>10</option>
                   <option value={25}>25</option>
                   <option value={50}>50</option>
+                  <option value={100}>100</option>
                 </select>
+              </div>
+
+              {/* Results count */}
+              <div className="text-sm text-gray-600 sm:ml-auto">
+                {totalItems} {totalItems === 1 ? 'matter' : 'matters'} found
               </div>
             </div>
           </div>
         </div>
 
         {/* Mobile Cards View */}
-        <div className="xl:hidden">
+        <div className="lg:hidden">
           {paginatedData.length > 0 ? (
-            paginatedData.map((matter, index) => (
-              <MobileCard key={matter.number} matter={matter} />
-            ))
+            <div className="space-y-4">
+              {paginatedData.map((matter) => (
+                <MobileCard key={matter.number} matter={matter} />
+              ))}
+            </div>
           ) : (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-              <p className="text-gray-500">No matters found matching your criteria.</p>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
+              <div className="text-gray-400 mb-4">
+                <Search className="h-12 w-12 mx-auto" />
+              </div>
+              <p className="text-gray-500 text-lg">No matters found</p>
+              <p className="text-gray-400 text-sm mt-1">Try adjusting your search criteria</p>
             </div>
           )}
         </div>
 
         {/* Desktop Table */}
-        <div className="hidden xl:block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <SortableHeader field="number">Number</SortableHeader>
-                  <SortableHeader field="applicationNumber" className="hidden 2xl:table-cell">Application Number</SortableHeader>
-                  <SortableHeader field="name">Name</SortableHeader>
-                  <SortableHeader field="client" className="hidden 2xl:table-cell">Client</SortableHeader>
-                  <SortableHeader field="type">Type</SortableHeader>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {paginatedData.length > 0 ? (
-                  paginatedData.map((matter, index) => (
-                    <tr key={matter.number} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {matter.number}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden 2xl:table-cell">
-                        {matter.applicationNumber}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
-                        <div className="max-w-xs 2xl:max-w-md">
-                          <div className="truncate" title={matter.name}>
-                            {matter.name}
-                          </div>
-                          <div className="2xl:hidden text-xs text-gray-500 mt-1">
-                            {matter.applicationNumber}
-                          </div>
-                          <div className="2xl:hidden text-xs text-gray-500 mt-1 truncate" title={matter.client}>
-                            {matter.client}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-500 hidden 2xl:table-cell">
-                        <div className="max-w-xs truncate" title={matter.client}>
-                          {matter.client}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                          {matter.type}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
-                          <button 
-                            className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50 transition-colors"
-                            title="View Details"
-                          >
-                            <FiEye className="h-4 w-4" />
-                          </button>
-                          <button 
-                            className="text-gray-600 hover:text-gray-900 p-1 rounded hover:bg-gray-50 transition-colors"
-                            title="Download"
-                          >
-                            <FiDownload className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </td>
+            <div className="inline-block min-w-full align-middle">
+              <div 
+                className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+                style={{
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#D1D5DB #F3F4F6'
+                }}
+              >
+                <table className="min-w-full divide-y divide-gray-200" style={{ minWidth: '1200px' }}>
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <SortableHeader field="number" minWidth="min-w-24">Number</SortableHeader>
+                      <SortableHeader field="applicationNumber" minWidth="min-w-32">Application Number</SortableHeader>
+                      <SortableHeader field="name" minWidth="min-w-80">Name</SortableHeader>
+                      <SortableHeader field="client" minWidth="min-w-64">Client</SortableHeader>
+                      <SortableHeader field="type" minWidth="min-w-24">Type</SortableHeader>
+                      <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider min-w-24">
+                        Actions
+                      </th>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
-                      No matters found matching your criteria.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {paginatedData.length > 0 ? (
+                      paginatedData.map((matter) => (
+                        <tr key={matter.number} className="hover:bg-gray-50 transition-colors">
+                          <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {matter.number}
+                          </td>
+                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {matter.applicationNumber}
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-900">
+                            <div className="max-w-xs xl:max-w-md 2xl:max-w-lg">
+                              <div className="font-medium line-clamp-2 leading-5" title={matter.name}>
+                                {matter.name}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 text-sm text-gray-500">
+                            <div className="max-w-xs xl:max-w-md">
+                              <div className="truncate" title={matter.client}>
+                                {matter.client}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 whitespace-nowrap">
+                            <span className="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                              {matter.type}
+                            </span>
+                          </td>
+                          <td className="px-3 py-4 whitespace-nowrap text-sm font-medium">
+                            <div className="flex space-x-2">
+                              <button 
+                                className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
+                                title="View Details"
+                              >
+                                <Eye className="h-4 w-4" />
+                              </button>
+                              <button 
+                                className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                                title="Download"
+                              >
+                                <Download className="h-4 w-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="6" className="px-3 py-12 text-center">
+                          <div className="text-gray-400 mb-4">
+                            <Search className="h-12 w-12 mx-auto" />
+                          </div>
+                          <p className="text-gray-500 text-lg">No matters found</p>
+                          <p className="text-gray-400 text-sm mt-1">Try adjusting your search criteria</p>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Pagination */}
-        <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 xl:mt-0 xl:rounded-b-lg">
-          <div className="flex-1 flex justify-between sm:hidden">
-            <button
-              onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
-              disabled={currentPage === 1}
-              className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Previous
-            </button>
-            <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700">
-              {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Next
-            </button>
-          </div>
-          
-          <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700">
-                Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
-                <span className="font-medium">
-                  {Math.min(startIndex + itemsPerPage, totalItems)}
-                </span>{' '}
-                of <span className="font-medium">{totalItems}</span> results
-              </p>
-            </div>
-            
-            <div className="flex items-center space-x-2">
+        {totalPages > 1 && (
+          <div className="bg-white px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-6 lg:mt-0 lg:rounded-b-xl">
+            <div className="flex-1 flex justify-between sm:hidden">
               <button
                 onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
-                className="relative inline-flex items-center px-2 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                <FiChevronLeft className="h-5 w-5" />
+                Previous
               </button>
-              
-              <div className="hidden md:flex space-x-1">
-                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                  const pageNum = i + 1;
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => setCurrentPage(pageNum)}
-                      className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md ${
-                        currentPage === pageNum
-                          ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
-                          : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
-              
+              <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700">
+                Page {currentPage} of {totalPages}
+              </span>
               <button
                 onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="relative inline-flex items-center px-2 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                <FiChevronRight className="h-5 w-5" />
+                Next
               </button>
             </div>
+            
+            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                  <span className="font-medium">
+                    {Math.min(startIndex + itemsPerPage, totalItems)}
+                  </span>{' '}
+                  of <span className="font-medium">{totalItems}</span> results
+                </p>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                
+                <div className="hidden md:flex space-x-1">
+                  {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+                    let pageNum;
+                    if (totalPages <= 7) {
+                      pageNum = i + 1;
+                    } else {
+                      if (currentPage <= 4) {
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 3) {
+                        pageNum = totalPages - 6 + i;
+                      } else {
+                        pageNum = currentPage - 3 + i;
+                      }
+                    }
+                    
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium rounded-lg transition-colors ${
+                          currentPage === pageNum
+                            ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                            : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+                
+                <button
+                  onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
+
+      {/* Custom scrollbar styles */}
+      <style jsx>{`
+        .scrollbar-thin::-webkit-scrollbar {
+          height: 8px;
+        }
+        .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+          background-color: #D1D5DB;
+          border-radius: 4px;
+        }
+        .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb:hover {
+          background-color: #9CA3AF;
+        }
+        .scrollbar-track-gray-100::-webkit-scrollbar-track {
+          background-color: #F3F4F6;
+          border-radius: 4px;
+        }
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </div>
+    </motion.div>
   );
 };
 

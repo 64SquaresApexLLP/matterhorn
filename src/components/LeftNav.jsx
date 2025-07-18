@@ -31,7 +31,8 @@ const menuItems = [
 ];
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = useState(true);
+  // const [isOpen, setIsOpen] = useState(true);
+  const [isOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
@@ -39,15 +40,15 @@ export default function Nav() {
 
   // Update active index based on current location
   useEffect(() => {
-    const currentPath = location.pathname.replace('/', '');
-    
+    const currentPath = location.pathname.replace("/", "");
+
     // Handle special cases
-    if (currentPath === 'entries/new') {
+    if (currentPath === "entries/new") {
       setActiveIndex(3); // Entries index
       return;
     }
-    
-    const foundIndex = menuItems.findIndex(item => {
+
+    const foundIndex = menuItems.findIndex((item) => {
       if (item.path === currentPath) {
         return true;
       }
@@ -57,13 +58,13 @@ export default function Nav() {
       }
       return false;
     });
-    
+
     if (foundIndex !== -1) {
       setActiveIndex(foundIndex);
     }
   }, [location.pathname]);
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  // const toggleSidebar = () => setIsOpen(!isOpen);
   const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
 
   const handleMenuClick = (index) => {
@@ -90,51 +91,60 @@ export default function Nav() {
                 <img
                   src="./favicon-2.png"
                   alt="logo"
-                  className="m-2 h-[8vh] pl-1"
+                  className="m-2 h-[8vh] pl-0"
                 />
               )}
             </div>
           </div>
         </NavLink>
 
-        <button
+        {/* <button
           onClick={toggleSidebar}
           className="cursor-pointer absolute top-20 -right-4 z-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 active:scale-90 transition-transform"
         >
           {isOpen ? <FaChevronLeft /> : <FaChevronRight />}
-        </button>
+        </button> */}
 
         <nav className="mt-4 relative font-medium">
           {/* Active indicator */}
           <div
             className="absolute left-0 w-1 bg-[var(--primary)] rounded-r-full transition-all duration-300"
-            style={{ 
+            style={{
               height: "45px",
-              top: `${activeIndex * 55 + 6}px`
+              top: `${activeIndex * 55 + 6}px`,
             }}
           />
-          
+
           {/* Menu items */}
           <div className="flex flex-col gap-2">
             {menuItems.map((item, idx) => (
-              <div
-                key={idx}
-                className={`flex items-center gap-4 px-4 h-12 cursor-pointer relative transition-colors duration-200 ${
-                  activeIndex === idx
-                    ? "text-yellow-300 bg-[var(--primary)]/10"
-                    : "hover:bg-[var(--primary)]/20"
-                } ${!isOpen ? "justify-center" : ""}`}
-                onClick={() => handleMenuClick(idx)}
-              >
-                <span 
-                  className={`text-lg flex-shrink-0 ${
-                    activeIndex === idx ? "text-yellow-300 scale-110" : ""
-                  } transition-all duration-200`}
+              <div key={idx} className="group relative">
+                <div
+                  className={`flex items-center gap-4 px-4 h-12 cursor-pointer transition-colors duration-200
+      ${
+        activeIndex === idx
+          ? "text-yellow-300 bg-[var(--primary)]/10"
+          : "hover:bg-[var(--primary)]/20"
+      }
+      ${!isOpen ? "justify-center" : ""}`}
+                  onClick={() => handleMenuClick(idx)}
                 >
-                  {item.icon}
-                </span>
-                {isOpen && (
-                  <span className="text-sm whitespace-nowrap">
+                  <span
+                    className={`text-lg flex-shrink-0 transition-all duration-200
+        ${activeIndex === idx ? "text-yellow-300 scale-110" : ""}`}
+                  >
+                    {item.icon}
+                  </span>
+                  {isOpen && (
+                    <span className="text-sm whitespace-nowrap">
+                      {item.name}
+                    </span>
+                  )}
+                </div>
+
+                {/* Tooltip when collapsed */}
+                {!isOpen && (
+                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-gray-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity z-20 whitespace-nowrap shadow-md">
                     {item.name}
                   </span>
                 )}
@@ -180,11 +190,7 @@ export default function Nav() {
             }}
           >
             <FiLogOut className="text-lg" />
-            {isOpen && (
-              <span className="text-sm">
-                Log out
-              </span>
-            )}
+            {isOpen && <span className="text-sm">Log out</span>}
           </button>
         </div>
       </div>

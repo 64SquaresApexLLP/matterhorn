@@ -169,9 +169,9 @@ function HomePage() {
         </div>
       </section>
 
-      <FadeInWhenVisible>
-        {/* Services Section*/}
-        <section className="bg-slate-900 text-white py-16">
+      {/* Services Section*/}
+      <section className="bg-slate-900 text-white py-16">
+        <FadeInWhenVisible>
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -221,12 +221,13 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </section>
 
       {/* About Section */}
-      <FadeInWhenVisible delay={0.1}>
-        <section className="bg-gray-100 py-16">
+
+      <section className="bg-gray-100 py-16">
+        <FadeInWhenVisible delay={0.1}>
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -302,12 +303,13 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </section>
 
       {/* Testimonials Section*/}
-      <FadeInWhenVisible>
-        <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
+
+      <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
+        <FadeInWhenVisible>
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -370,12 +372,13 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </section>
 
       {/* CTA Section */}
-      <FadeInWhenVisible>
-        <section className="bg-gradient-to-r from-slate-800 to-slate-900 py-16">
+
+      <section className="bg-gradient-to-r from-slate-800 to-slate-900 py-16">
+        <FadeInWhenVisible>
           <div className="max-w-4xl mx-auto text-center px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Get Started?
@@ -394,8 +397,8 @@ function HomePage() {
               </button>
             </div>
           </div>
-        </section>
-      </FadeInWhenVisible>
+        </FadeInWhenVisible>
+      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
