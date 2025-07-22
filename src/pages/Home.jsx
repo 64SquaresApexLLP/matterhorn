@@ -159,8 +159,8 @@ function HomePage() {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-800 mb-8">
-            Expert legal solutions for modern businesses. We provide
-            comprehensive legal services to help your company navigate complex
+            Expert legal solutions for modern businesses.<br/>We provide
+            comprehensive legal services to help your company to<br/>navigate complex
             regulatory landscapes and achieve sustainable growth.
           </p>
           <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
