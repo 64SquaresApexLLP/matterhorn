@@ -20,7 +20,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import FadeInWhenVisible from "../components/FadeInWhenVisible";
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -133,41 +133,54 @@ function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-start justify-center px-4 md:px-8 pt-24 pb-12 max-w-7xl mx-auto text-left min-h-1/2 overflow-hidden">
-        {/* Background Images - Positioned Left & Right */}
-        <div className="absolute inset-0 -z-10">
-          {/* Graph on Left */}
-          <img
-            src="/img2.png"
-            alt="Graph background"
-            className="absolute top-0 left-0 h-full w-1/2 object-cover opacity-100"
-          />
-          {/* Law Illustration on Right */}
-          <img
-            src="/img1.png"
-            alt="Law illustration background"
-            className="absolute top-0 right-0 h-full w-1/2 object-cover opacity-100"
-          />
-        </div>
+   <section className="relative flex w-full px-4 md:px-8 pt-24 pb-12 mx-auto text-left min-h-[50vh] overflow-hidden">
+  {/* Background Images - Positioned Left & Right */}
+  <div className="absolute inset-0 -z-10 flex">
+    {/* Graph on Left */}
+    <img
+      src="/img2.png"
+      alt="Graph background"
+      className="h-full w-1/2 object-cover opacity-100"
+    />
+    {/* Optional Law Illustration on Right */}
+    <img
+      src="/img3.png"
+      alt="Law Illustration"
+      className="h-full w-1/2 object-cover opacity-10"
+    />
+  </div>
 
-        {/* Content */}
-        <div className="relative z-10 text-left max-w-2xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            CHANGING THE <br />
-            <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
-              BUSINESS OF LAW
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-800 mb-8">
-            Expert legal solutions for modern businesses.<br/>We provide
-            comprehensive legal services to help your company to<br/>navigate complex
-            regulatory landscapes and achieve sustainable growth.
-          </p>
-          <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
-            GET STARTED
-          </button>
-        </div>
-      </section>
+  {/* Animation */}
+  <div className="absolute top-4 right-3 w-full h-full flex justify-end items-center pointer-events-none -z-10 pt-10 pb-10">
+    <DotLottieReact
+      src="https://lottie.host/84f610ef-3fce-454d-9ea0-eacda50d4f65/fwh7Rj4l2L.lottie"
+      loop
+      autoplay
+      style={{ width: '700px', height: '800px' }}
+    />
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 text-left max-w-2xl">
+    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+      CHANGING THE <br />
+      <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
+        BUSINESS OF LAW
+      </span>
+    </h1>
+    <p className="text-lg md:text-xl text-gray-800 mb-8">
+      Expert legal solutions for modern businesses.
+      <br />
+      We provide comprehensive legal services to help your company
+      <br />
+      navigate complex regulatory landscapes and achieve sustainable growth.
+    </p>
+    <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
+      GET STARTED
+    </button>
+  </div>
+</section>
+
 
       {/* Services Section*/}
       <section className="bg-slate-900 text-white py-16">
