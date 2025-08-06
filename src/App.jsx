@@ -17,10 +17,10 @@ import Reports from "./pages/Reports";
 import Users from "./pages/Users";
 import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
-import RefDataMgt from "./pages/RefDataMgt";
 import Home from "./pages/Home";
 import NewEntry from "./pages/NewEntry";
 import Demo from "./components/Demo";
+import RefDataMgt from "./pages/RefDataMgt";
 
 const layoutRoutes = [
   { path: "/dashboard", element: <Dashboard /> },
@@ -33,7 +33,7 @@ const layoutRoutes = [
   { path: "/users", element: <Users /> },
   { path: "/edit-profile", element: <EditProfile /> },
   { path: "/settings", element: <Settings /> },
-  { path: "/reference-data-mgt", element: <RefDataMgt /> },
+  { path: "/reference-data-mgt/", element: <RefDataMgt /> },
   { path: "/entries/new", element: <NewEntry /> },
   { path: "/invoices/demo", element: <Demo /> },
 ];
