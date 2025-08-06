@@ -31,12 +31,12 @@ function HomePage() {
   return (
     <div className="font-sans text-black relative">
       <header className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white shadow-md">
-        <div className="flex flex-col md:flex-row items-center justify-between py-7 px-10 md:px-2 max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-2 pb-6 md:px-2 max-w-6xl mx-auto">
           <div className="flex flex-col items-center space-x-2 text-center">
             <img
               src="/logo.png"
               alt="Matterhorn Logo"
-              className="w-50 h-12 mb-1"
+              className="w-80 h-auto h-12 mb-1"
             />
           </div>
 
@@ -133,54 +133,54 @@ function HomePage() {
       </div>
 
       {/* Hero Section */}
-   <section className="relative flex w-full px-4 md:px-8 pt-24 pb-12 mx-auto text-left min-h-[50vh] overflow-hidden">
-  {/* Background Images - Positioned Left & Right */}
-  <div className="absolute inset-0 -z-10 flex">
-    {/* Graph on Left */}
-    <img
-      src="/img2.png"
-      alt="Graph background"
-      className="h-full w-1/2 object-cover opacity-100"
-    />
-    {/* Optional Law Illustration on Right */}
-    <img
-      src="/img3.png"
-      alt="Law Illustration"
-      className="h-full w-1/2 object-cover opacity-10"
-    />
-  </div>
+      <section className="relative flex w-full px-4 md:px-8 pt-24 pb-12 mx-auto text-left min-h-[90vh] overflow-hidden">
+        {/* Background Images - Positioned Left & Right */}
+        <div className="absolute inset-0 -z-10 flex">
+          {/* Graph on Left */}
+          <img
+            src="/img2.png"
+            alt="Graph background"
+            className="h-full w-1/2 object-cover opacity-100"
+          />
+          {/* Optional Law Illustration on Right */}
+          <img
+            src="/img3.png"
+            alt="Law Illustration"
+            className="h-full w-1/2 object-cover opacity-10"
+          />
+        </div>
 
-  {/* Animation */}
-  <div className="absolute top-4 right-3 w-full h-full flex justify-end items-center pointer-events-none -z-10 pt-10 pb-10">
-    <DotLottieReact
-      src="https://lottie.host/84f610ef-3fce-454d-9ea0-eacda50d4f65/fwh7Rj4l2L.lottie"
-      loop
-      autoplay
-      style={{ width: '700px', height: '800px' }}
-    />
-  </div>
+        {/* Animation */}
+        <div className="absolute top-4 right-3 w-full h-full flex justify-end items-center pointer-events-none -z-10 pt-10 pb-10">
+          <DotLottieReact
+            src="https://lottie.host/84f610ef-3fce-454d-9ea0-eacda50d4f65/fwh7Rj4l2L.lottie"
+            loop
+            autoplay
+            style={{ width: "700px", height: "800px" }}
+          />
+        </div>
 
-  {/* Content */}
-  <div className="relative z-10 text-left max-w-2xl">
-    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-      CHANGING THE <br />
-      <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
-        BUSINESS OF LAW
-      </span>
-    </h1>
-    <p className="text-lg md:text-xl text-gray-800 mb-8">
-      Expert legal solutions for modern businesses.
-      <br />
-      We provide comprehensive legal services to help your company
-      <br />
-      navigate complex regulatory landscapes and achieve sustainable growth.
-    </p>
-    <button className="mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
-      GET STARTED
-    </button>
-  </div>
-</section>
-
+        {/* Content */}
+        <div className="relative z-10 text-left max-w-2xl ml-20 mt-10">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            CHANGING THE <br />
+            <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
+              BUSINESS OF LAW
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-800 mb-8">
+            Expert legal solutions for modern businesses.
+            <br />
+            We provide comprehensive legal services to help your company
+            <br />
+            navigate complex regulatory landscapes and achieve sustainable
+            growth.
+          </p>
+          <button className="cursor-pointer mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
+            SCHEDULE A CALL
+          </button>
+        </div>
+      </section>
 
       {/* Services Section*/}
       <section className="bg-slate-900 text-white py-16">

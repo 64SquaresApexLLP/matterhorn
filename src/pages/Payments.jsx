@@ -253,7 +253,7 @@ const Payments = () => {
         ease: "easeInOut",
       }}
     >
-      <div className="min-h-screen bg-blue-50 p-6">
+      <div className="min-h-screen bg-white p-6">
         <div className="max-w-full ml-30 mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
@@ -267,7 +267,7 @@ const Payments = () => {
           {/* Charts */}
           <div className="grid md:grid-cols-2 gap-6">
             {/* Pie Chart */}
-            <div className="bg-white rounded-xl p-6">
+            <div className="bg-white rounded-xl p-6 shadow">
               <h2 className="text-lg font-semibold mb-4">Payment Status</h2>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>

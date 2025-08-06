@@ -503,7 +503,7 @@ const TimekeeperForm = () => {
 
         {/* Reference ID Summary */}
         {formData.referenceId && (
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+          <div className="mt-6 p-4 bg-white border border-blue-200 rounded-md">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-blue-800">
                 Auto-Generated Reference ID:
