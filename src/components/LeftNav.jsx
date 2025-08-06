@@ -60,7 +60,7 @@ export default function Nav() {
 
     // Handle special cases
     if (currentPath === "entries/new") {
-      setActiveIndex(2); // Data index (contains entries)
+      setActiveIndex(2); 
       return;
     }
 
@@ -68,11 +68,9 @@ export default function Nav() {
       if (item.path === currentPath) {
         return true;
       }
-      // Handle nested routes
       if (currentPath.startsWith(item.path)) {
         return true;
       }
-      // Check dropdown items
       if (item.dropdown) {
         return item.dropdown.some(
           (subItem) =>
@@ -87,7 +85,6 @@ export default function Nav() {
     }
   }, [location.pathname]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -111,14 +108,12 @@ export default function Nav() {
     const item = menuItems[index];
 
     if (item.dropdown) {
-      // Toggle dropdown
       setOpenDropdown(openDropdown === index ? null : index);
       setActiveIndex(index);
     } else {
-      // Navigate directly
+      setOpenDropdown(null);
       setActiveIndex(index);
       navigate(`/${item.path}`);
-      setOpenDropdown(null);
     }
   };
 
@@ -131,7 +126,7 @@ export default function Nav() {
   return (
     <div
       className="bg-gradient-to-b from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] shadow-lg flex flex-col justify-between sticky bottom-0"
-      style={{ height: "100vh", width: isOpen ? 250 : 80 }}
+      style={{ height: "100vh", width: isOpen ? 250 : 80, zIndex: 1000 }}
     >
       <div>
         <NavLink to="/" className="flex items-center">
@@ -195,13 +190,15 @@ export default function Nav() {
                   )}
                 </div>
 
-                {/* Dropdown menu */}
                 {item.dropdown && openDropdown === idx && (
-                  <div className="absolute left-full top-0 ml-1 bg-gradient-to-b from-[var(--secondary-800)] to-[var(--secondary-700)] border border-[var(--primary)]/20 rounded-lg shadow-lg z-30 min-w-[180px]">
+                  <div 
+                    className="absolute left-full top-0 ml-1 bg-gray-800 border border-gray-600 rounded-lg shadow-lg min-w-[180px] opacity-100"
+                    style={{ zIndex: 9999, backgroundColor: '#1f2937' }}
+                  >
                     {item.dropdown.map((subItem, subIdx) => (
                       <div
                         key={subIdx}
-                        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[var(--primary)]/20 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-700 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg text-white"
                         onClick={() => handleDropdownItemClick(idx, subItem)}
                       >
                         <span className="text-base">{subItem.icon}</span>
@@ -211,30 +208,22 @@ export default function Nav() {
                   </div>
                 )}
 
-                {/* Tooltip when collapsed */}
                 {!isOpen && !item.dropdown && (
-                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-gray-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity z-20 whitespace-nowrap shadow-md">
+                  <span 
+                    className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-gray-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md"
+                    style={{ zIndex: 9998 }}
+                  >
                     {item.name}
                   </span>
                 )}
 
-                {/* Dropdown tooltip when collapsed */}
-                {!isOpen && item.dropdown && (
-                  <div className="absolute left-full top-0 ml-1 bg-gray-700 rounded-lg shadow-lg z-30 min-w-[140px] opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="px-2 py-1 text-xs text-white font-medium border-b border-gray-600">
-                      {item.name}
-                    </div>
-                    {item.dropdown.map((subItem, subIdx) => (
-                      <div
-                        key={subIdx}
-                        className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-600 transition-colors duration-200 text-white text-xs last:rounded-b-lg"
-                        onClick={() => handleDropdownItemClick(idx, subItem)}
-                      >
-                        <span className="text-xs">{subItem.icon}</span>
-                        <span>{subItem.name}</span>
-                      </div>
-                    ))}
-                  </div>
+                {!isOpen && item.dropdown && openDropdown !== idx && (
+                  <span 
+                    className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-gray-700 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md"
+                    style={{ zIndex: 9998 }}
+                  >
+                    {item.name}
+                  </span>
                 )}
               </div>
             ))}
