@@ -109,19 +109,14 @@ const Login = () => {
         </motion.div>
       </motion.div>
 
-      {/* Login Section with Lottie Background */}
+      {/* Login Section with Background Image */}
       <div className="w-[70vw] relative overflow-hidden">
-        {/* Lottie Animation Background */}
-        <div className="absolute inset-0 z-0 bg-gray-200">
-          <iframe
-            src="https://lottie.host/embed/440c93c8-17a5-4ac6-bd2f-61b356438c95/CfCpMLj0Vd.lottie"
-            style={{ 
-              width: "100%", 
-              height: "100%", 
-              border: "none",
-              opacity: 0.6
-            }}
-            title="Services Background Animation"
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/img1.png"
+            alt="Background"
+            className="w-full h-full object-cover opacity-60"
           />
           {/* Overlay for better readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/40"></div>
@@ -249,7 +244,7 @@ const Login = () => {
               whileTap={{ scale: 0.98 }}
               onClick={handleLogin}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full bg-[#062e69] hover:bg-blue-900 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isLoading ? (
                 <>
@@ -272,10 +267,10 @@ const Login = () => {
               transition={{ duration: 0.5, delay: 1 }}
               className="flex justify-between text-sm pt-4 border-t border-gray-200"
             >
-              <button className="text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium">
+              <button className="text-[#062e69] hover:text-blue-900 hover:underline transition-colors font-medium">
                 Forgot Password?
               </button>
-              <button className="text-blue-600 hover:text-blue-700 hover:underline transition-colors font-medium">
+              <button className="text-[#062e69] hover:text-blue-900 hover:underline transition-colors font-medium">
                 Create Account
               </button>
             </motion.div>

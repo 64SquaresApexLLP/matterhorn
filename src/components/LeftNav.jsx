@@ -126,7 +126,7 @@ export default function Nav() {
   return (
     <div
       // className="bg-gradient-to-b from-[var(--secondary-900)] to-[var(--secondary-600)] text-[var(--text)] shadow-lg flex flex-col justify-between sticky bottom-0"
-      className="bg-gradient-to-b from-[#1167CC] to-[#0E44A4] text-[var(--text)] shadow-lg flex flex-col justify-between sticky bottom-0"
+      className="bg-[#062e69] text-[var(--text)] shadow-lg flex flex-col justify-between sticky bottom-0"
       style={{ height: "100vh", width: isOpen ? 250 : 80, zIndex: 1000 }}
     >
       <div>
