@@ -30,7 +30,7 @@ function HomePage() {
 
   return (
     <div className="font-sans text-black relative">
-      <header className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white shadow-md">
+      <header className="bg-[#062e69] text-white shadow-md">
         <div className="flex flex-col md:flex-row items-center justify-between pt-2 pb-6 md:px-2 max-w-6xl mx-auto">
           <div className="flex flex-col items-center space-x-2 text-center">
             <img
@@ -84,31 +84,31 @@ function HomePage() {
           <nav className="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-wrap justify-center gap-4 text-sm font-medium text-black">
             <a
               href="#"
-              className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
+              className="hover:text-[#062e69] hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
             >
               HOME
             </a>
             <a
               href="#"
-              className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
+              className="hover:text-[#062e69] hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
             >
               ABOUT US
             </a>
             <a
               href="#"
-              className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
+              className="hover:text-[#062e69] hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
             >
               SERVICES
             </a>
             <a
               href="#"
-              className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
+              className="hover:text-[#062e69] hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
             >
               BLOG
             </a>
             <a
               href="#"
-              className="hover:text-blue-700 hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
+              className="hover:text-[#062e69] hover:bg-blue-50 px-2 py-1 rounded transition-all duration-300"
             >
               CONTACT
             </a>
@@ -118,13 +118,13 @@ function HomePage() {
           <div className="flex space-x-2">
             <button
               onClick={() => navigate("/login")}
-              className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
+              className="bg-white text-[#062e69] px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
             >
               SIGN IN
             </button>
             <button
               onClick={() => navigate("/login")}
-              className="bg-white text-blue-700 px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
+              className="bg-white text-[#062e69] px-4 py-1 rounded-md shadow hover:bg-blue-50 hover:text-blue-800 font-semibold text-sm transition-all duration-300 cursor-pointer"
             >
               SIGN UP
             </button>
@@ -164,7 +164,7 @@ function HomePage() {
         <div className="relative z-10 text-left max-w-2xl ml-20 mt-10">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             CHANGING THE <br />
-            <span className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] bg-clip-text text-transparent">
+            <span className="bg-[#062e69] bg-clip-text text-transparent">
               BUSINESS OF LAW
             </span>
           </h1>
@@ -176,7 +176,7 @@ function HomePage() {
             navigate complex regulatory landscapes and achieve sustainable
             growth.
           </p>
-          <button className="cursor-pointer mt-6 bg-blue-700 text-white px-8 py-3 rounded-md hover:bg-blue-800 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
+          <button className="cursor-pointer mt-6 bg-[#062e69] text-white px-8 py-3 rounded-md hover:bg-blue-900 hover:scale-105 shadow-md font-semibold text-lg transition-all duration-300">
             SCHEDULE A CALL
           </button>
         </div>
@@ -245,7 +245,7 @@ function HomePage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-                  Why Choose <span className="text-blue-700">Matterhorn</span>?
+                  Why Choose <span className="text-[#062e69]">Matterhorn</span>?
                 </h2>
                 <p className="text-gray-600 text-lg mb-6">
                   With over 25 years of combined experience, our team of legal
@@ -278,7 +278,7 @@ function HomePage() {
                   </div>
                 </div>
 
-                <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-all duration-300 flex items-center">
+                <button className="bg-[#062e69] text-white px-6 py-3 rounded-md hover:bg-blue-900 transition-all duration-300 flex items-center">
                   Learn More <FaArrowRight className="ml-2" />
                 </button>
               </div>
@@ -289,25 +289,25 @@ function HomePage() {
                 </h3>
                 <div className="grid grid-cols-2 gap-6 text-center">
                   <div>
-                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                    <div className="text-3xl font-bold text-[#062e69] mb-2">
                       500+
                     </div>
                     <div className="text-gray-600">Cases Won</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                    <div className="text-3xl font-bold text-[#062e69] mb-2">
                       1000+
                     </div>
                     <div className="text-gray-600">Happy Clients</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                    <div className="text-3xl font-bold text-[#062e69] mb-2">
                       25+
                     </div>
                     <div className="text-gray-600">Years Experience</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-blue-700 mb-2">
+                    <div className="text-3xl font-bold text-[#062e69] mb-2">
                       98%
                     </div>
                     <div className="text-gray-600">Success Rate</div>
@@ -321,7 +321,7 @@ function HomePage() {
 
       {/* Testimonials Section*/}
 
-      <section className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] py-16">
+      <section className="bg-[#062e69] py-16">
         <FadeInWhenVisible>
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
@@ -402,7 +402,7 @@ function HomePage() {
               landscape.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-[#0E44A4] to-[#1167CC] text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 font-semibold">
+              <button className="bg-[#062e69] border-2 border-white text-white px-8 py-3 rounded-md hover:bg-blue-900 transition-all duration-300 font-semibold">
                 Schedule Consultation
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-gray-800 transition-all duration-300 font-semibold">
