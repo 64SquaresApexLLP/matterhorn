@@ -140,7 +140,7 @@ function HomePage() {
           <img
             src="/img2.png"
             alt="Graph background"
-            className="h-full w-1/2 object-cover opacity-100"
+            className="h-full w-full object-cover opacity-100"
           />
           {/* Optional Law Illustration on Right */}
           <img
@@ -151,7 +151,7 @@ function HomePage() {
         </div>
 
         {/* Animation */}
-        <div className="absolute top-4 right-3 w-full h-full flex justify-end items-center pointer-events-none -z-10 pt-10 pb-10">
+        <div className="bg-white/50 absolute top-2 right-3 w-full h-full flex justify-end items-center pointer-events-none -z-10 pt-10 pb-10">
           <DotLottieReact
             src="https://lottie.host/84f610ef-3fce-454d-9ea0-eacda50d4f65/fwh7Rj4l2L.lottie"
             loop
