@@ -576,7 +576,7 @@ const Dashboard = () => {
                     </h2>
                     <div className="flex space-x-8">
                       <div>
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-2xl font-semibold text-blue-600">
                           ${todayStats.totalRevenue.toLocaleString()}
                         </div>
                         <div className="text-sm text-gray-600">
@@ -585,7 +585,7 @@ const Dashboard = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="text-2xl font-bold text-green-600">
+                        <div className="text-2xl font-semibold text-green-600">
                           ${todayStats.collectedRevenue.toLocaleString()}
                         </div>
                         <div className="text-sm text-gray-600">
