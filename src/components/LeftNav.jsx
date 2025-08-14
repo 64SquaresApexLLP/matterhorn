@@ -156,7 +156,7 @@ export default function Nav() {
         return {
           bg: 'bg-[#062e69]',
           text: 'text-white',
-          activeText: 'text-yellow-300',
+          activeText: 'text-white',
           hoverBg: 'hover:bg-white/10',
           activeBg: 'bg-yellow-400/10',
           borderColor: 'border-white/20'
@@ -174,7 +174,7 @@ export default function Nav() {
         return {
           bg: 'bg-[#062e69]',
           text: 'text-white',
-          activeText: 'text-yellow-300',
+          activeText: 'text-white',
           hoverBg: 'hover:bg-white/10',
           activeBg: 'bg-yellow-400/10',
           borderColor: 'border-white/20'
