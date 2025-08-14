@@ -258,7 +258,7 @@ const Payments = () => {
           {/* Header */}
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-900">Payments</h1>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+            <button className="bg-[var(--primary)] hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
               <FiPlus />
               <span>New Payment</span>
             </button>

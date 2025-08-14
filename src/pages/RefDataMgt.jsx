@@ -867,7 +867,7 @@ const RefDataMgt = () => {
                   resetAll();
                   setShowModal(true);
                 }}
-                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm shadow-sm transition-colors"
+                className="cursor-pointer bg-[var(--primary)] hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm shadow-sm transition-colors"
               >
                 New Entry
               </button>
