@@ -36,6 +36,8 @@ const Dashboard = () => {
     active: 211348,
     recentIncrease: 219,
     last48hIncrease: 978,
+    totalRevenue: 1250000,
+    collectedRevenue: 456000,
   };
 
   const revenueData = [
@@ -52,7 +54,6 @@ const Dashboard = () => {
     { month: "Nov", revenue: 456000, invoices: 228 },
     { month: "Dec", revenue: 489000, invoices: 245 },
   ];
-
   const mostPopular = [
     { name: "Corporate Law Services", amount: "$125,400" },
     { name: "Litigation Services", amount: "$98,750" },
@@ -567,103 +568,95 @@ const Dashboard = () => {
                 animationTrigger ? "animate-slide-up" : ""
               }`}
             >
-              <div className="flex justify-between items-center mb-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-800">
-                    Monthly Revenue
-                  </h3>
-                  <p className="text-slate-600 text-sm">
-                    Previous Month - November 2024
-                  </p>
+              <div className="bg-white rounded-2xl p-6 mb-6">
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                      Monthly Revenue
+                    </h2>
+                    <div className="flex space-x-8">
+                      <div>
+                        <div className="text-2xl font-bold text-blue-600">
+                          ${todayStats.totalRevenue.toLocaleString()}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Total Revenue{" "}
+                          <span className="text-green-600">+12%</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-green-600">
+                          ${todayStats.collectedRevenue.toLocaleString()}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Collected <span className="text-red-600">+15%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <select className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Last year</option>
+                    <option>Last 6 months</option>
+                    <option>Last 3 months</option>
+                  </select>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-slate-600">November</p>
-                  <p className="text-2xl font-semibold text-slate-800">
-                    $456,000
-                  </p>
+
+                {/* Chart */}
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                   <AreaChart data={revenueData}>
+  <defs>
+    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3} />
+      <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+    </linearGradient>
+    <linearGradient id="colorInvoices" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="5%" stopColor="#10B981" stopOpacity={0.3} />
+      <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
+    </linearGradient>
+  </defs>
+
+  <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+  <XAxis
+    dataKey="month"
+    axisLine={false}
+    tickLine={false}
+    tick={{ fill: "#6B7280", fontSize: 12 }}
+  />
+
+  {/* Two Y-axes, both hidden */}
+  <YAxis yAxisId="left" hide />
+  <YAxis yAxisId="right" hide />
+
+  <Tooltip
+    contentStyle={{
+      backgroundColor: "white",
+      border: "1px solid #E5E7EB",
+      borderRadius: "8px",
+      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+    }}
+  />
+
+  <Area
+    yAxisId="left"
+    type="monotone"
+    dataKey="revenue"
+    stroke="#3B82F6"
+    strokeWidth={2}
+    fill="url(#colorRevenue)"
+  />
+  <Area
+    yAxisId="right"
+    type="monotone"
+    dataKey="invoices"
+    stroke="#10B981"
+    strokeWidth={2}
+    fill="url(#colorInvoices)"
+  />
+</AreaChart>
+
+                  </ResponsiveContainer>
                 </div>
-              </div>
-              <div className="h-100">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={revenueData}>
-                    <defs>
-                      <linearGradient
-                        id="revenueGradient"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
-                      >
-                        <stop
-                          offset="5%"
-                          stopColor="#3B82F6"
-                          stopOpacity={0.3}
-                        />
-                        <stop
-                          offset="95%"
-                          stopColor="#3B82F6"
-                          stopOpacity={0}
-                        />
-                      </linearGradient>
-                      <linearGradient
-                        id="invoiceGradient"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
-                      >
-                        <stop
-                          offset="5%"
-                          stopColor="#F59E0B"
-                          stopOpacity={0.8}
-                        />
-                        <stop
-                          offset="95%"
-                          stopColor="#F59E0B"
-                          stopOpacity={0.1}
-                        />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
-                    <XAxis
-                      dataKey="month"
-                      axisLine={false}
-                      tickLine={false}
-                      tick={{ fill: "#64748B", fontSize: 12 }}
-                    />
-                    <YAxis hide />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: "rgba(255, 255, 255, 0.95)",
-                        backdropFilter: "blur(10px)",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                        borderRadius: "8px",
-                        boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-                      }}
-                      formatter={(value, name) => {
-                        if (name === "revenue")
-                          return [`$${value.toLocaleString()}`, "Revenue"];
-                        if (name === "invoices") return [value, "Invoices"];
-                        return [value, name];
-                      }}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="revenue"
-                      stroke="#3B82F6"
-                      strokeWidth={3}
-                      fill="url(#revenueGradient)"
-                      dot={{ fill: "#3B82F6", strokeWidth: 2, r: 4 }}
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="invoices"
-                      stroke="#F59E0B"
-                      strokeWidth={2}
-                      strokeDasharray="5 5"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
               </div>
             </div>
             <div className="space-y-6">
