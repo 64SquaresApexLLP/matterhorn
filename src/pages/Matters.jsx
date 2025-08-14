@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from "framer-motion";
-// Icon components (replacing react-icons with inline SVGs)
+
+// Icon components (keeping your existing ones)
 const ChevronDown = ({ className = "h-4 w-4" }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -59,7 +60,7 @@ const Matters = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-  // Sample data
+  // Sample data (keeping your existing data)
   const mattersData = [
     {
       number: '0003US',
@@ -147,7 +148,7 @@ const Matters = () => {
     }
   ];
 
-  // Filter and sort data
+  // Filter and sort data (keeping your existing logic)
   const filteredAndSortedData = useMemo(() => {
     let filtered = mattersData.filter(matter => {
       const matchesSearch = searchTerm === '' || 
@@ -181,7 +182,7 @@ const Matters = () => {
     return filtered;
   }, [searchTerm, typeFilter, sortField, sortDirection]);
 
-  // Pagination
+  // Pagination logic (keeping your existing logic)
   const totalItems = filteredAndSortedData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -196,15 +197,15 @@ const Matters = () => {
     }
   };
 
-  const SortableHeader = ({ field, children, className = "", minWidth = "" }) => (
+  const SortableHeader = ({ field, children, className = "", width = "" }) => (
     <th 
-      className={`px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 select-none transition-colors ${className} ${minWidth}`}
+      className={`px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 select-none transition-colors ${className} ${width}`}
       onClick={() => handleSort(field)}
     >
-      <div className="flex items-center space-x-1">
+      <div className="flex items-center space-x-2">
         <span className="whitespace-nowrap">{children}</span>
         <ChevronDown 
-          className={`h-3 w-3 transform transition-transform flex-shrink-0 ${
+          className={`h-4 w-4 transform transition-transform flex-shrink-0 ${
             sortField === field 
               ? sortDirection === 'asc' ? 'rotate-180' : 'rotate-0'
               : 'opacity-50'
@@ -214,7 +215,7 @@ const Matters = () => {
     </th>
   );
 
-  // Mobile Card Component
+  // Mobile Card Component (keeping your existing mobile component)
   const MobileCard = ({ matter }) => (
     <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-3">
@@ -251,318 +252,300 @@ const Matters = () => {
 
   return (
     <motion.div
-              initial={{ opacity: 0, y: 50 }} 
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-              duration: 0.5,
-              ease: "easeInOut"
-            }}
+      initial={{ opacity: 0, y: 50 }} 
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        ease: "easeInOut"
+      }}
     >
-    <div className="min-h-screen">
-      <div className="max-w-full mx-auto ml-30 px-4 sm:px-6 lg:px-8 py-6">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-          <div>
-            <h1 className="text-2xl lg:text-2xl font-semibold text-gray-900 mb-1">Matters</h1>
-            <p className="text-sm text-gray-600">Manage your intellectual property matters</p>
+      <div className="min-h-screen ml-30">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Matters</h1>
+              <p className="text-gray-600">Manage your intellectual property matters</p>
+            </div>
+            <button className="w-full sm:w-auto bg-[var(--primary)] text-white px-6 py-3 rounded-lg flex items-center justify-center space-x-2 transition-all transform hover:scale-105 shadow-lg font-medium">
+              <Plus className="h-4 w-4" />
+              <span>New Matter</span>
+            </button>
           </div>
-          <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-5 py-2 rounded-lg flex items-center justify-center space-x-2 transition-all transform hover:scale-105 shadow-lg">
-            <Plus className="h-4 w-4" />
-            <span className="font-sm">New Matter</span>
-          </button>
-        </div>
 
-        {/* Mobile Filter Toggle */}
-        <div className="lg:hidden mb-4">
-          <button
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
-          >
-            <span className="flex items-center space-x-2">
-              <Filter className="h-4 w-4" />
-              <span>Filters & Search</span>
-            </span>
-            <ChevronDown className={`h-4 w-4 transform transition-transform ${showMobileFilters ? 'rotate-180' : ''}`} />
-          </button>
-        </div>
+          {/* Mobile Filter Toggle */}
+          <div className="lg:hidden mb-4">
+            <button
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 flex items-center justify-between text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+            >
+              <span className="flex items-center space-x-2">
+                <Filter className="h-4 w-4" />
+                <span>Filters & Search</span>
+              </span>
+              <ChevronDown className={`h-4 w-4 transform transition-transform ${showMobileFilters ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
 
-        {/* Filters and Search */}
-        <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-4 lg:p-6 mb-6 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
-          <div className="flex flex-col gap-4">
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <input
-                type="text"
-                placeholder="Search matters by name, number, or application..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            {/* Filters Row */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
-              {/* Type Filter */}
-              <div className="flex-1 sm:flex-none relative min-w-0 sm:min-w-32">
-                <select
-                  className="w-full appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
-                  value={typeFilter}
-                  onChange={(e) => setTypeFilter(e.target.value)}
-                >
-                  <option value="">All Types</option>
-                  <option value="PATENT">Patent</option>
-                  <option value="TRADEMARK">Trademark</option>
-                  <option value="COPYRIGHT">Copyright</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
+          {/* Filters and Search */}
+          <div className={`bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6 ${showMobileFilters ? 'block' : 'hidden lg:block'}`}>
+            <div className="flex flex-col gap-4">
+              {/* Search */}
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  type="text"
+                  placeholder="Search matters by name, number, or application..."
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
 
-              {/* Items per page */}
-              <div className="flex items-center space-x-3">
-                <span className="text-sm text-gray-600 whitespace-nowrap">Items per page:</span>
-                <select
-                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  value={itemsPerPage}
-                  onChange={(e) => {
-                    setItemsPerPage(Number(e.target.value));
-                    setCurrentPage(1);
-                  }}
-                >
-                  <option value={10}>10</option>
-                  <option value={25}>25</option>
-                  <option value={50}>50</option>
-                  <option value={100}>100</option>
-                </select>
-              </div>
+              {/* Filters Row */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {/* Type Filter */}
+                  <div className="relative min-w-48">
+                    <select
+                      className="w-full appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-colors"
+                      value={typeFilter}
+                      onChange={(e) => setTypeFilter(e.target.value)}
+                    >
+                      <option value="">All Types</option>
+                      <option value="PATENT">Patent</option>
+                      <option value="TRADEMARK">Trademark</option>
+                      <option value="COPYRIGHT">Copyright</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 pointer-events-none" />
+                  </div>
 
-              {/* Results count */}
-              <div className="text-sm text-gray-600 sm:ml-auto">
-                {totalItems} {totalItems === 1 ? 'matter' : 'matters'} found
+                  {/* Items per page */}
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm text-gray-600 whitespace-nowrap">Items per page:</span>
+                    <select
+                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors min-w-20"
+                      value={itemsPerPage}
+                      onChange={(e) => {
+                        setItemsPerPage(Number(e.target.value));
+                        setCurrentPage(1);
+                      }}
+                    >
+                      <option value={10}>10</option>
+                      <option value={25}>25</option>
+                      <option value={50}>50</option>
+                      <option value={100}>100</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Results count */}
+                <div className="text-sm text-gray-600 font-medium">
+                  {totalItems} {totalItems === 1 ? 'matter' : 'matters'} found
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Mobile Cards View */}
-        <div className="lg:hidden">
-          {paginatedData.length > 0 ? (
-            <div className="space-y-4">
-              {paginatedData.map((matter) => (
-                <MobileCard key={matter.number} matter={matter} />
-              ))}
-            </div>
-          ) : (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
-              <div className="text-gray-400 mb-4">
-                <Search className="h-12 w-12 mx-auto" />
+          {/* Mobile Cards View */}
+          <div className="lg:hidden">
+            {paginatedData.length > 0 ? (
+              <div className="space-y-4">
+                {paginatedData.map((matter) => (
+                  <MobileCard key={matter.number} matter={matter} />
+                ))}
               </div>
-              <p className="text-gray-500 text-lg">No matters found</p>
-              <p className="text-gray-400 text-sm mt-1">Try adjusting your search criteria</p>
+            ) : (
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
+                <div className="text-gray-400 mb-4">
+                  <Search className="h-12 w-12 mx-auto" />
+                </div>
+                <p className="text-gray-500 text-lg">No matters found</p>
+                <p className="text-gray-400 text-sm mt-1">Try adjusting your search criteria</p>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Table */}
+          <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <SortableHeader field="number" width="w-32">Number</SortableHeader>
+                    <SortableHeader field="applicationNumber" width="w-40">Application Number</SortableHeader>
+                    <SortableHeader field="name" width="w-96">Name</SortableHeader>
+                    <SortableHeader field="client" width="w-72">Client</SortableHeader>
+                    <SortableHeader field="type" width="w-24">Type</SortableHeader>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {paginatedData.length > 0 ? (
+                    paginatedData.map((matter, index) => (
+                      <tr key={matter.number} className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'}`}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm font-semibold text-gray-900">
+                            {matter.number}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-600 font-mono">
+                            {matter.applicationNumber}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-900 font-medium leading-relaxed">
+                            <div className="line-clamp-2" title={matter.name}>
+                              {matter.name}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-600">
+                            <div className="truncate" title={matter.client}>
+                              {matter.client}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                            {matter.type}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-3">
+                            <button 
+                              className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
+                              title="View Details"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </button>
+                            <button 
+                              className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                              title="Download"
+                            >
+                              <Download className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="6" className="px-6 py-16 text-center">
+                        <div className="text-gray-400 mb-4">
+                          <Search className="h-16 w-16 mx-auto" />
+                        </div>
+                        <p className="text-gray-500 text-xl font-medium">No matters found</p>
+                        <p className="text-gray-400 text-sm mt-2">Try adjusting your search criteria</p>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Pagination - keeping your existing pagination logic but with improved styling */}
+          {totalPages > 1 && (
+            <div className="bg-white px-6 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-0 lg:rounded-b-xl">
+              <div className="flex-1 flex justify-between sm:hidden">
+                <button
+                  onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Previous
+                </button>
+                <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+              
+              <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700">
+                    Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                    <span className="font-medium">
+                      {Math.min(startIndex + itemsPerPage, totalItems)}
+                    </span>{' '}
+                    of <span className="font-medium">{totalItems}</span> results
+                  </p>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  
+                  <div className="hidden md:flex space-x-1">
+                    {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+                      let pageNum;
+                      if (totalPages <= 7) {
+                        pageNum = i + 1;
+                      } else {
+                        if (currentPage <= 4) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 3) {
+                          pageNum = totalPages - 6 + i;
+                        } else {
+                          pageNum = currentPage - 3 + i;
+                        }
+                      }
+                      
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium rounded-lg transition-colors ${
+                            currentPage === pageNum
+                              ? 'z-10 bg-blue-600 border-blue-600 text-white'
+                              : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  
+                  <button
+                    onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Desktop Table */}
-        <div className="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
-            <div className="inline-block min-w-full align-middle">
-              <div 
-                className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-                style={{
-                  scrollbarWidth: 'thin',
-                  scrollbarColor: '#D1D5DB #F3F4F6'
-                }}
-              >
-                <table className="min-w-full divide-y divide-gray-200" style={{ minWidth: '1200px' }}>
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <SortableHeader field="number" minWidth="min-w-24">Number</SortableHeader>
-                      <SortableHeader field="applicationNumber" minWidth="min-w-32">Application Number</SortableHeader>
-                      <SortableHeader field="name" minWidth="min-w-80">Name</SortableHeader>
-                      <SortableHeader field="client" minWidth="min-w-64">Client</SortableHeader>
-                      <SortableHeader field="type" minWidth="min-w-24">Type</SortableHeader>
-                      <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider min-w-24">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {paginatedData.length > 0 ? (
-                      paginatedData.map((matter) => (
-                        <tr key={matter.number} className="hover:bg-gray-50 transition-colors">
-                          <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {matter.number}
-                          </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {matter.applicationNumber}
-                          </td>
-                          <td className="px-3 py-4 text-sm text-gray-900">
-                            <div className="max-w-xs xl:max-w-md 2xl:max-w-lg">
-                              <div className="font-medium line-clamp-2 leading-5" title={matter.name}>
-                                {matter.name}
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-3 py-4 text-sm text-gray-500">
-                            <div className="max-w-xs xl:max-w-md">
-                              <div className="truncate" title={matter.client}>
-                                {matter.client}
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-3 py-4 whitespace-nowrap">
-                            <span className="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                              {matter.type}
-                            </span>
-                          </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm font-medium">
-                            <div className="flex space-x-2">
-                              <button 
-                                className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
-                                title="View Details"
-                              >
-                                <Eye className="h-4 w-4" />
-                              </button>
-                              <button 
-                                className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-                                title="Download"
-                              >
-                                <Download className="h-4 w-4" />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan="6" className="px-3 py-12 text-center">
-                          <div className="text-gray-400 mb-4">
-                            <Search className="h-12 w-12 mx-auto" />
-                          </div>
-                          <p className="text-gray-500 text-lg">No matters found</p>
-                          <p className="text-gray-400 text-sm mt-1">Try adjusting your search criteria</p>
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="bg-white px-4 py-4 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-6 lg:mt-0 lg:rounded-b-xl">
-            <div className="flex-1 flex justify-between sm:hidden">
-              <button
-                onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
-                disabled={currentPage === 1}
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Previous
-              </button>
-              <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700">
-                Page {currentPage} of {totalPages}
-              </span>
-              <button
-                onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                Next
-              </button>
-            </div>
-            
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
-                  <span className="font-medium">
-                    {Math.min(startIndex + itemsPerPage, totalItems)}
-                  </span>{' '}
-                  of <span className="font-medium">{totalItems}</span> results
-                </p>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
-                  disabled={currentPage === 1}
-                  className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </button>
-                
-                <div className="hidden md:flex space-x-1">
-                  {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
-                    let pageNum;
-                    if (totalPages <= 7) {
-                      pageNum = i + 1;
-                    } else {
-                      if (currentPage <= 4) {
-                        pageNum = i + 1;
-                      } else if (currentPage >= totalPages - 3) {
-                        pageNum = totalPages - 6 + i;
-                      } else {
-                        pageNum = currentPage - 3 + i;
-                      }
-                    }
-                    
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium rounded-lg transition-colors ${
-                          currentPage === pageNum
-                            ? 'z-10 bg-white border-blue-500 text-blue-600'
-                            : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
-                </div>
-                
-                <button
-                  onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className="relative inline-flex items-center px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Custom styles */}
+        <style jsx>{`
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        `}</style>
       </div>
-
-      {/* Custom scrollbar styles */}
-      <style jsx>{`
-        .scrollbar-thin::-webkit-scrollbar {
-          height: 8px;
-        }
-        .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
-          background-color: #D1D5DB;
-          border-radius: 4px;
-        }
-        .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb:hover {
-          background-color: #9CA3AF;
-        }
-        .scrollbar-track-gray-100::-webkit-scrollbar-track {
-          background-color: #F3F4F6;
-          border-radius: 4px;
-        }
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
-    </div>
     </motion.div>
   );
 };

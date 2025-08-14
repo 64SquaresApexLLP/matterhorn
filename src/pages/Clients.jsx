@@ -142,9 +142,9 @@ const Clients = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Clients</h1>
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex items-center gap-2 bg-[var(--primary)] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
             <FiPlus className="w-4 h-4" />
-            New Client
+              New Client
           </button>
         </div>
 

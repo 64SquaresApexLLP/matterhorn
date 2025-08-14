@@ -265,7 +265,7 @@ const Entries = () => {
             </div>
             <button
               onClick={handleClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto"
+              className="bg-[var(--primary)] text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto"
             >
               <FiPlus className="h-5 w-5" />
               <span>New Entry</span>
