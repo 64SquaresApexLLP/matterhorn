@@ -204,7 +204,7 @@ export default function Nav() {
                 <img
                   src="./favicon-2.png"
                   alt="logo"
-                  className="m-2 h-[8vh] pl-0"
+                  className="h-[8vh] pl-0"
                 />
               )}
             </div>
@@ -215,7 +215,7 @@ export default function Nav() {
           {/* Active indicator */}
           <div
             className={`absolute left-0 w-1 ${
-              currentTheme === 'dracula' ? 'bg-purple-400' : 'bg-yellow-400'
+              currentTheme === 'dracula' ? 'bg-purple-400' : 'bg-white'
             } rounded-r-full transition-all duration-300`}
             style={{
               height: "45px",
@@ -351,14 +351,15 @@ export default function Nav() {
           <button
             className={`cursor-pointer w-full flex items-center ${
               isOpen ? "justify-start gap-3 px-2" : "justify-center"
-            } py-2 text-left bg-yellow-600 hover:bg-yellow-700 rounded-lg text-white transition-all duration-200`}
-            onClick={() => {
+            } py-2 text-left bg-white hover:bg-gray-300 rounded-lg transition-all duration-200`}
+              style={{ color: 'var(--primary)' }}
+              onClick={() => {
               console.log("Logout clicked");
               navigate("/");
             }}
           >
             <FiLogOut className="text-lg" />
-            {isOpen && <span className="text-sm">Log out</span>}
+              {isOpen && <span className="text-sm">Log out</span>}
           </button>
         </div>
       </div>
