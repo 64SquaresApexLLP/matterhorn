@@ -648,7 +648,7 @@ const RefDataMgt = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-start py-5 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-start py-5 px-4">
       <div
         className="opacity-0 animate-fade-in"
         style={{ animationDelay: "0s", animationFillMode: "forwards" }}

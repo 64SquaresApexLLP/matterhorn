@@ -258,7 +258,7 @@ const Dashboard = () => {
         ease: "easeInOut",
       }}
     >
-      <div className="min-h-screen bg-white p-6">
+      <div className="min-h-screen p-6">
         <style jsx>{`
           @keyframes slideInUp {
             from {

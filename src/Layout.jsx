@@ -13,9 +13,9 @@ const Layout = ({ children }) => {
       {/* Right Main Content */}
       <div className="flex flex-col flex-1 h-full">
         {/* Top Navigation */}
-        <div className="h-[10vh] w-full">
+        {/* <div className="h-[10vh] w-full">
           <TopNav />
-        </div>
+        </div> */}
 
         {/* Page Content */}
         <div className="flex-1 overflow-auto bg-blue-50">{children}</div>

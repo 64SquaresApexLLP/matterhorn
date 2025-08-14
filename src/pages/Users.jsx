@@ -108,7 +108,7 @@ const Users = () => {
       ease: "easeInOut"
     }}
     >
-    <div className="min-h-screen bg-white p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-full mx-auto ml-30">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">

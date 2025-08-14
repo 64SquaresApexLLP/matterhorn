@@ -253,7 +253,7 @@ const Payments = () => {
         ease: "easeInOut",
       }}
     >
-      <div className="min-h-screen bg-white p-6">
+      <div className="min-h-screen p-6">
         <div className="max-w-full ml-30 mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
