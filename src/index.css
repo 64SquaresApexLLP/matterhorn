@@ -31,11 +31,6 @@ body.theme-dracula {
   --secondary-600: #4b4b5e;
 }
 
-/* Ensure all pages have blue-50 background */
-body {
-  background-color: theme(colors.blue.50) !important;
-}
-
 /* Override navbar colors based on theme */
 .navbar-corporate {
   background-color: #062e69 !important;
